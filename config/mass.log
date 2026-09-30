@@ -1,0 +1,723 @@
+Version: unknown
+load xml config
+Control loaded.
+run: 58
+material: Material
+detector: World (World)
+ -- parameter: check_overlap = 1
+ -- parameter: half_x = 1000*cm
+ -- parameter: half_y = 1000*cm
+ -- parameter: half_z = 1000*cm
+detector: Concrete (Cuboid) (in World)
+ -- parameter: check_overlap = 1
+ -- parameter: logivol = ConcreteLog
+ -- parameter: material = concrete
+ -- parameter: physvol = Concrete
+ -- parameter: shift_x = 0*cm
+ -- parameter: shift_y = 0*cm
+ -- parameter: shift_z = -137.5*cm
+ -- parameter: soliname = ConcreteSolid
+ -- parameter: width_x = 500*cm
+ -- parameter: width_y = 500*cm
+ -- parameter: width_z = 5*cm
+detector: PE (Cuboid) (in World)
+ -- parameter: check_overlap = 1
+ -- parameter: logivol = PELog
+ -- parameter: material = G4_POLYETHYLENE
+ -- parameter: physvol = PE
+ -- parameter: shift_x = 0*cm
+ -- parameter: shift_y = 0*cm
+ -- parameter: shift_z = 0*cm
+ -- parameter: soliname = PESolid
+ -- parameter: width_x = 230*cm
+ -- parameter: width_y = 200*cm
+ -- parameter: width_z = 270*cm
+detector: Lead (Cuboid) (in PE)
+ -- parameter: check_overlap = 1
+ -- parameter: logivol = LeadLog
+ -- parameter: material = G4_Pb
+ -- parameter: physvol = Lead
+ -- parameter: shift_x = -15*cm
+ -- parameter: shift_y = 0*cm
+ -- parameter: shift_z = -45*cm
+ -- parameter: soliname = LeadSolid
+ -- parameter: width_x = 100*cm
+ -- parameter: width_y = 100*cm
+ -- parameter: width_z = 160*cm
+detector: InnerPE (Cuboid) (in Lead)
+ -- parameter: check_overlap = 1
+ -- parameter: logivol = InnerPELog
+ -- parameter: material = G4_POLYETHYLENE
+ -- parameter: physvol = InnerPE
+ -- parameter: shift_x = 0*cm
+ -- parameter: shift_y = 0*cm
+ -- parameter: shift_z = 0*cm
+ -- parameter: soliname = InnerPESolid
+ -- parameter: width_x = 90*cm
+ -- parameter: width_y = 90*cm
+ -- parameter: width_z = 150*cm
+detector: PS (Cuboid) (in InnerPE)
+ -- parameter: check_overlap = 1
+ -- parameter: logivol = PSLog
+ -- parameter: material = PS
+ -- parameter: physvol = PS
+ -- parameter: shift_x = 0*cm
+ -- parameter: shift_y = 0*cm
+ -- parameter: shift_z = 0*cm
+ -- parameter: soliname = PSSolid
+ -- parameter: width_x = 76*cm
+ -- parameter: width_y = 76*cm
+ -- parameter: width_z = 136*cm
+detector: Air (Cuboid) (in PS)
+ -- parameter: check_overlap = 1
+ -- parameter: entrack = 1
+ -- parameter: logivol = AirLog
+ -- parameter: material = G4_AIR
+ -- parameter: physvol = Air
+ -- parameter: sendname = Air
+ -- parameter: shift_x = 0*cm
+ -- parameter: shift_y = 0*cm
+ -- parameter: shift_z = 0*cm
+ -- parameter: soliname = AirSolid
+ -- parameter: width_x = 60*cm
+ -- parameter: width_y = 60*cm
+ -- parameter: width_z = 120*cm
+detector: Flange35 (Array) (in Air)
+ -- parameter: check_overlap = 1
+ -- parameter: height = 2.54*cm
+ -- parameter: inner_radius = 2.075*cm
+ -- parameter: logivol = Flange35Log
+ -- parameter: material = Flange
+ -- parameter: objects = Prism
+ -- parameter: outer_radius = 3.5*cm
+ -- parameter: physvol = Flange35
+ -- parameter: sides = 0
+ -- parameter: soliname = Flange35Solid
+ -- parameter: source = data/Flange35.txt
+detector: Flange63 (Array) (in Air)
+ -- parameter: check_overlap = 1
+ -- parameter: height = 3.5*cm
+ -- parameter: inner_radius = 3.35*cm
+ -- parameter: logivol = Flange63Log
+ -- parameter: material = Flange
+ -- parameter: objects = Prism
+ -- parameter: outer_radius = 5.7*cm
+ -- parameter: physvol = Flange63
+ -- parameter: sides = 0
+ -- parameter: soliname = Flange63Solid
+ -- parameter: source = data/Flange63.txt
+detector: OuterContainer (Polyhedra) (in Air)
+ -- parameter: check_overlap = 1
+ -- parameter: logivol = OuterContainerLog
+ -- parameter: material = SS304LSteel
+ -- parameter: physvol = OuterContainer
+ -- parameter: soliname = OuterContainerSolid
+ -- parameter: source = data/OuterContainerRZ.txt
+detector: Vacuum (Polyhedra) (in OuterContainer)
+ -- parameter: check_overlap = 1
+ -- parameter: logivol = VacuumLog
+ -- parameter: material = Vacuum
+ -- parameter: physvol = Vacuum
+ -- parameter: soliname = VacuumSolid
+ -- parameter: source = data/VacuumRZ.txt
+detector: InnerContainer (Polyhedra) (in Vacuum)
+ -- parameter: check_overlap = 1
+ -- parameter: logivol = InnerContainerLog
+ -- parameter: material = SS304LSteel
+ -- parameter: physvol = InnerContainer
+ -- parameter: soliname = InnerContainerSolid
+ -- parameter: source = data/InnerContainerRZ.txt
+detector: OuterGasXe (Polyhedra) (in InnerContainer)
+ -- parameter: check_overlap = 1
+ -- parameter: logivol = OuterGasXeLog
+ -- parameter: material = GXe
+ -- parameter: physvol = OuterGasXe
+ -- parameter: soliname = OuterGasXeSolid
+ -- parameter: source = data/OuterGasXeRZ.txt
+detector: Anode (MeshGrid) (in OuterGasXe)
+ -- parameter: check_overlap = 1
+ -- parameter: logivol = AnodeLog
+ -- parameter: material = SS304LSteel
+ -- parameter: physvol = Anode
+ -- parameter: radius = 8.25*cm
+ -- parameter: shift_z = 0.25*cm
+ -- parameter: sides = 0
+ -- parameter: soliname = AnodeSolid
+ -- parameter: surface = 0
+detector: Anode_rings (Prism) (in OuterGasXe)
+ -- parameter: check_overlap = 1
+ -- parameter: height = 0.5*cm
+ -- parameter: inner_radius = 8.5*cm
+ -- parameter: logivol = Anode_ringsLog
+ -- parameter: material = SS304LSteel
+ -- parameter: outer_radius = 9.0*cm
+ -- parameter: physvol = Anode_rings
+ -- parameter: shift_z = 0.5*cm
+ -- parameter: sides = 0*cm
+ -- parameter: soliname = Anode_ringsSolid
+ -- parameter: surface = 0
+detector: TopBasePEEK (HolesBoard) (in OuterGasXe)
+ -- parameter: check_overlap = 1
+ -- parameter: height = 0.5*cm
+ -- parameter: logivol = TopBasePEEKLog
+ -- parameter: material = PMTbasePEEK
+ -- parameter: physvol = TopBasePEEK
+ -- parameter: radius = 12*cm
+ -- parameter: shift_z = 5.62*cm
+ -- parameter: sides = 0
+ -- parameter: soliname = TopBasePEEKSolid
+ -- parameter: source = data/XeInTopPMTTeflon.txt
+ -- parameter: width_x = 2.7*cm
+detector: TopKeel (Array) (in OuterGasXe)
+ -- parameter: check_overlap = 1
+ -- parameter: logivol = TopKeelLog
+ -- parameter: material = Teflon
+ -- parameter: objects = Cuboid
+ -- parameter: physvol = TopKeel
+ -- parameter: shift_z = 1.2725*cm
+ -- parameter: soliname = TopKeelSolid
+ -- parameter: source = data/keel_GXe.txt
+ -- parameter: surface = 0
+ -- parameter: width_x = 0.985*cm
+ -- parameter: width_y = 2.35*cm
+ -- parameter: width_z = 2.545*cm
+detector: TopPMTTeflon (HolesBoard) (in OuterGasXe)
+ -- parameter: check_overlap = 1
+ -- parameter: height = 0.25*cm
+ -- parameter: logivol = TopPMTTeflonLog
+ -- parameter: material = Teflon
+ -- parameter: physvol = TopPMTTeflon
+ -- parameter: radius = 10.257912876047213*cm
+ -- parameter: shift_z = 2.67*cm
+ -- parameter: sides = 0
+ -- parameter: soliname = TopPMTTeflonSolid
+ -- parameter: source = data/XeInTopPMTTeflon.txt
+ -- parameter: surface = 0
+ -- parameter: width_x = 2.4*cm
+detector: XeSideTeflon0 (Prism) (in OuterGasXe)
+ -- parameter: check_overlap = 1
+ -- parameter: height = 2.545*cm
+ -- parameter: inner_radius = 8.25*cm
+ -- parameter: logivol = XeSideTeflon0Log
+ -- parameter: material = Teflon
+ -- parameter: outer_radius = 8.5*cm
+ -- parameter: physvol = XeSideTeflon0
+ -- parameter: shift_z = 1.2725*cm
+ -- parameter: sides = 0
+ -- parameter: soliname = XeSideTeflon0Solid
+ -- parameter: surface = 0
+detector: tR8520 (Array) (in OuterGasXe)
+ -- parameter: check_overlap = 1
+ -- parameter: logivol = R8520Log
+ -- parameter: objects = PMTsR8520
+ -- parameter: physvol = R8520
+ -- parameter: soliname = R8520Solid
+ -- parameter: source = data/topPMTs.txt
+detector: XenonVeto (Polyhedra) (in InnerContainer)
+ -- parameter: check_overlap = 1
+ -- parameter: entrack = 1
+ -- parameter: logivol = XenonVetoLog
+ -- parameter: material = LXe
+ -- parameter: physvol = XenonVeto
+ -- parameter: sendname = XenonVeto
+ -- parameter: soliname = XenonVetoSolid
+ -- parameter: source = data/XenonVetoRZ.txt
+detector: BotBasePEEK (HolesBoard) (in XenonVeto)
+ -- parameter: check_overlap = 1
+ -- parameter: height = 0.5*cm
+ -- parameter: logivol = BotBasePEEKLog
+ -- parameter: material = PMTbasePEEK
+ -- parameter: physvol = BotBasePEEK
+ -- parameter: radius = 12*cm
+ -- parameter: shift_z = -20.705*cm
+ -- parameter: sides = 0
+ -- parameter: soliname = BotBasePEEKSolid
+ -- parameter: source = data/XeInBotPMTTeflon.txt
+ -- parameter: width_x = 2.7*cm
+detector: Lxe_OutContainer (Polyhedra) (in XenonVeto)
+ -- parameter: check_overlap = 1
+ -- parameter: logivol = Lxe_OutContainerLog
+ -- parameter: material = SS304LSteel
+ -- parameter: physvol = Lxe_OutContainer
+ -- parameter: soliname = Lxe_OutContainerSolid
+ -- parameter: source = data/Lxe_OutContainer.txt
+detector: Lxe_InnerContainer (Polyhedra) (in Lxe_OutContainer)
+ -- parameter: check_overlap = 1
+ -- parameter: logivol = Lxe_InnerContainerLog
+ -- parameter: material = LXe
+ -- parameter: physvol = Lxe_InnerContainer
+ -- parameter: soliname = Lxe_InnerContainerSolid
+ -- parameter: source = data/Lxe_InnerContainer.txt
+detector: XenonDetector (Prism) (in XenonVeto)
+ -- parameter: check_overlap = 1
+ -- parameter: entrack = 1
+ -- parameter: height = 17.884999999999998*cm
+ -- parameter: logivol = XenonDetectorLog
+ -- parameter: material = LXe
+ -- parameter: outer_radius = 10.257912876047213*cm
+ -- parameter: physvol = XenonDetector
+ -- parameter: sendname = XenonDetector
+ -- parameter: shift_z = -8.942499999999999*cm
+ -- parameter: sides = 0
+ -- parameter: soliname = XenonDetectorSolid
+detector: BotPMTTeflon (HolesBoard) (in XenonDetector)
+ -- parameter: check_overlap = 1
+ -- parameter: height = 0.25*cm
+ -- parameter: logivol = BotPMTTeflonLog
+ -- parameter: material = Teflon
+ -- parameter: physvol = BotPMTTeflon
+ -- parameter: radius = 10.257912876047213*cm
+ -- parameter: shift_z = -8.817499999999999*cm
+ -- parameter: sides = 0
+ -- parameter: soliname = BotPMTTeflonSolid
+ -- parameter: source = data/XeInBotPMTTeflon.txt
+ -- parameter: surface = 0
+ -- parameter: width_x = 2.4*cm
+detector: BottomScreening (MeshGrid) (in XenonDetector)
+ -- parameter: check_overlap = 1
+ -- parameter: logivol = BottomScreeningLog
+ -- parameter: material = SS304LSteel
+ -- parameter: physvol = BottomScreening
+ -- parameter: radius = 8.25*cm
+ -- parameter: shift_z = -8.68*cm
+ -- parameter: sides = 0
+ -- parameter: soliname = BottomScreeningSolid
+ -- parameter: surface = 0
+detector: Cathode (MeshGrid) (in XenonDetector)
+ -- parameter: check_overlap = 1
+ -- parameter: logivol = CathodeLog
+ -- parameter: material = SS304LSteel
+ -- parameter: physvol = Cathode
+ -- parameter: radius = 8.25*cm
+ -- parameter: shift_z = -6.665000000000001*cm
+ -- parameter: sides = 0
+ -- parameter: soliname = CathodeSolid
+ -- parameter: surface = 0
+detector: Gate (MeshGrid) (in XenonDetector)
+ -- parameter: check_overlap = 1
+ -- parameter: logivol = GateLog
+ -- parameter: material = SS304LSteel
+ -- parameter: physvol = Gate
+ -- parameter: radius = 8.25*cm
+ -- parameter: shift_z = 8.692499999999999*cm
+ -- parameter: sides = 0
+ -- parameter: soliname = GateSolid
+ -- parameter: surface = 0
+detector: XenonVeto1 (Prism) (in XenonDetector)
+ -- parameter: check_overlap = 1
+ -- parameter: entrack = 1
+ -- parameter: height = 17.634999999999998*cm
+ -- parameter: inner_radius = 8.25*cm
+ -- parameter: logivol = XenonVeto1Log
+ -- parameter: material = LXe
+ -- parameter: outer_radius = 10.257912876047213*cm
+ -- parameter: physvol = XenonVeto1
+ -- parameter: sendname = XenonVeto1
+ -- parameter: shift_z = 0.125*cm
+ -- parameter: sides = 0
+ -- parameter: soliname = XenonVeto1Solid
+detector: BottomScreening_rings (Prism) (in XenonVeto1)
+ -- parameter: check_overlap = 1
+ -- parameter: height = 0.5*cm
+ -- parameter: inner_radius = 8.5*cm
+ -- parameter: logivol = BottomScreening_ringsLog
+ -- parameter: material = SS304LSteel
+ -- parameter: outer_radius = 9.0*cm
+ -- parameter: physvol = BottomScreening_rings
+ -- parameter: shift_z = -8.555*cm
+ -- parameter: sides = 0*cm
+ -- parameter: soliname = BottomScreening_ringsSolid
+ -- parameter: surface = 0
+detector: Cathode_rings (Prism) (in XenonVeto1)
+ -- parameter: check_overlap = 1
+ -- parameter: height = 0.5*cm
+ -- parameter: inner_radius = 8.5*cm
+ -- parameter: logivol = Cathode_ringsLog
+ -- parameter: material = SS304LSteel
+ -- parameter: outer_radius = 9.0*cm
+ -- parameter: physvol = Cathode_rings
+ -- parameter: shift_z = -7.040000000000001*cm
+ -- parameter: sides = 0*cm
+ -- parameter: soliname = Cathode_ringsSolid
+ -- parameter: surface = 0
+detector: Gate_rings (Prism) (in XenonVeto1)
+ -- parameter: check_overlap = 1
+ -- parameter: height = 0.5*cm
+ -- parameter: inner_radius = 8.5*cm
+ -- parameter: logivol = Gate_ringsLog
+ -- parameter: material = SS304LSteel
+ -- parameter: outer_radius = 9.0*cm
+ -- parameter: physvol = Gate_rings
+ -- parameter: shift_z = 8.317499999999999*cm
+ -- parameter: sides = 0*cm
+ -- parameter: soliname = Gate_ringsSolid
+ -- parameter: surface = 0
+detector: Shapingrings (Array) (in XenonVeto1)
+ -- parameter: check_overlap = 1
+ -- parameter: height = 0.5*cm
+ -- parameter: inner_radius = 8.5*cm
+ -- parameter: logivol = ShapingringsLog
+ -- parameter: material = Copper
+ -- parameter: objects = Prism
+ -- parameter: outer_radius = 9.0*cm
+ -- parameter: physvol = Shapingrings
+ -- parameter: sides = 0
+ -- parameter: soliname = ShapingringsSolid
+ -- parameter: source = data/shapingrings.txt
+ -- parameter: surface = 0
+detector: TopKee2 (Array) (in XenonVeto1)
+ -- parameter: check_overlap = 1
+ -- parameter: logivol = TopKee2Log
+ -- parameter: material = Teflon
+ -- parameter: objects = Cuboid
+ -- parameter: physvol = TopKee2
+ -- parameter: shift_z = 0*cm
+ -- parameter: soliname = TopKee2Solid
+ -- parameter: source = data/keel_LXe.txt
+ -- parameter: surface = 0
+ -- parameter: width_x = 0.985*cm
+ -- parameter: width_y = 2.35*cm
+ -- parameter: width_z = 17.634999999999998*cm
+detector: XeSideTeflon1 (Prism) (in XenonVeto1)
+ -- parameter: check_overlap = 1
+ -- parameter: height = 17.634999999999998*cm
+ -- parameter: inner_radius = 8.25*cm
+ -- parameter: logivol = XeSideTeflon1Log
+ -- parameter: material = Teflon
+ -- parameter: outer_radius = 8.5*cm
+ -- parameter: physvol = XeSideTeflon1
+ -- parameter: sides = 0
+ -- parameter: soliname = XeSideTeflon1Solid
+ -- parameter: surface = 0
+detector: bR8520 (Array) (in XenonVeto)
+ -- parameter: check_overlap = 1
+ -- parameter: logivol = R8520Log
+ -- parameter: objects = PMTsR8520
+ -- parameter: physvol = R8520
+ -- parameter: soliname = R8520Solid
+ -- parameter: source = data/botPMTs.txt
+physics: PandaXPhysics
+physics parameter: cutlength = 0.1*mm
+generator: NeutronGenerator
+generator parameter: shielding_x = 600*cm
+generator parameter: shielding_z = 300*cm
+analysis: RelicsOpticalAnalysis
+analysis parameter: ChainSplittingLifeTime = 400*us
+analysis parameter: DataFileName = ../config/test.root
+analysis parameter: EnableDecayChainSplitting = 1
+analysis parameter: EnableEnergyDeposition = 1
+analysis parameter: EnablePrimaryParticle = 1
+analysis parameter: EnableSurfaceFlux = 0
+analysis parameter: GetGeoMass = 1
+analysis parameter: SaveNullEvents = 0
+analysis parameter: UserSeed = 0
+
+**************************************************************
+ Geant4 version Name: geant4-11-01-patch-03 [MT]   (10-November-2023)
+                       Copyright : Geant4 Collaboration
+                      References : NIM A 506 (2003), 250-303
+                                 : IEEE-TNS 53 (2006), 270-278
+                                 : NIM A 835 (2016), 186-225
+                             WWW : http://geant4.org/
+**************************************************************
+
+default cut length: 0.1 mm
+Avaliable elements: 
+H B C N O F Al Si Ar Ca Cr Mn Fe Ni Cu Xe 
+Available materials: 
+Vacuum Air LXe GXe Quartz PhotoCathodeAluminium Copper SS304LSteel Flange Teflon Cirlex G4_AIR G4_POLYETHYLENE G4_Pb concrete G4_WATER PEEK PMTbasePEEK PS 
+create detector World...
+create detector Cuboid...
+Checking overlaps for volume Concrete:0 (G4Box) ... OK! 
+create detector Cuboid...
+Checking overlaps for volume PE:0 (G4Box) ... OK! 
+create detector Cuboid...
+Checking overlaps for volume Lead:0 (G4Box) ... OK! 
+create detector Cuboid...
+Checking overlaps for volume InnerPE:0 (G4Box) ... OK! 
+create detector Cuboid...
+Checking overlaps for volume PS:0 (G4Box) ... OK! 
+create detector Cuboid...
+Checking overlaps for volume Air:0 (G4Box) ... OK! 
+create detector Array...
+create detector Prism...
+Checking overlaps for volume Flange35:0 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Flange35:1 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Flange35:2 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Flange35:3 (G4GenericPolycone) ... OK! 
+create detector Array...
+create detector Prism...
+Checking overlaps for volume Flange63:0 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Flange63:1 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Flange63:2 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Flange63:3 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Flange63:4 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Flange63:5 (G4GenericPolycone) ... OK! 
+create detector Polyhedra...
+Checking overlaps for volume OuterContainer:0 (G4GenericPolycone) ... OK! 
+create detector Polyhedra...
+Checking overlaps for volume Vacuum:0 (G4GenericPolycone) ... OK! 
+create detector Polyhedra...
+Checking overlaps for volume InnerContainer:0 (G4GenericPolycone) ... OK! 
+create detector Polyhedra...
+Checking overlaps for volume OuterGasXe:0 (G4GenericPolycone) ... OK! 
+create detector MeshGrid...
+Checking overlaps for volume Anode:0 (G4SubtractionSolid) ... OK! 
+create detector Prism...
+Checking overlaps for volume Anode_rings:0 (G4GenericPolycone) ... OK! 
+create detector HolesBoard...
+Checking overlaps for volume TopBasePEEK:0 (G4SubtractionSolid) ... OK! 
+create detector Array...
+create detector Cuboid...
+Checking overlaps for volume TopKeel:0 (G4Box) ... OK! 
+Checking overlaps for volume TopKeel:1 (G4Box) ... OK! 
+Checking overlaps for volume TopKeel:2 (G4Box) ... OK! 
+Checking overlaps for volume TopKeel:3 (G4Box) ... OK! 
+create detector HolesBoard...
+Checking overlaps for volume TopPMTTeflon:0 (G4SubtractionSolid) ... OK! 
+create detector Prism...
+Checking overlaps for volume XeSideTeflon0:0 (G4GenericPolycone) ... OK! 
+create detector Array...
+create detector PMTsR8520...
+Checking overlaps for volume Base:0 (G4Box) ... OK! 
+Checking overlaps for volume Window:0 (G4Box) ... OK! 
+Checking overlaps for volume Casing:0 (G4Box) ... OK! 
+Checking overlaps for volume Interior:0 (G4Box) ... OK! 
+Checking overlaps for volume PhotoCathode:0 (G4Box) ... OK! 
+Set G4LogicalSkinSurface to BaseLogicalVolume with Cirlex_Surface
+Set G4LogicalSkinSurface to WindowLogicalVolume with Quartz_Surface
+Set G4LogicalSkinSurface to CasingLogicalVolume with SS304LSteel_Surface
+Set G4LogicalSkinSurface to PhotoCathodeLogicalVolume with PhotoCathodeAluminium_Surface
+Checking overlaps for volume R8520:0 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:1 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:2 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:3 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:4 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:5 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:6 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:7 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:8 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:9 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:10 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:11 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:12 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:13 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:14 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:15 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:16 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:17 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:18 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:19 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:20 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:21 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:22 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:23 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:24 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:25 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:26 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:27 (G4UnionSolid) ... OK! 
+create detector Polyhedra...
+Checking overlaps for volume XenonVeto:0 (G4GenericPolycone) ... OK! 
+create detector HolesBoard...
+Checking overlaps for volume BotBasePEEK:0 (G4SubtractionSolid) ... OK! 
+create detector Polyhedra...
+Checking overlaps for volume Lxe_OutContainer:0 (G4GenericPolycone) ... OK! 
+create detector Polyhedra...
+Checking overlaps for volume Lxe_InnerContainer:0 (G4GenericPolycone) ... OK! 
+create detector Prism...
+Checking overlaps for volume XenonDetector:0 (G4GenericPolycone) ... OK! 
+create detector HolesBoard...
+Checking overlaps for volume BotPMTTeflon:0 (G4SubtractionSolid) ... OK! 
+create detector MeshGrid...
+Checking overlaps for volume BottomScreening:0 (G4SubtractionSolid) ... OK! 
+create detector MeshGrid...
+Checking overlaps for volume Cathode:0 (G4SubtractionSolid) ... OK! 
+create detector MeshGrid...
+Checking overlaps for volume Gate:0 (G4SubtractionSolid) ... OK! 
+create detector Prism...
+Checking overlaps for volume XenonVeto1:0 (G4GenericPolycone) ... OK! 
+create detector Prism...
+Checking overlaps for volume BottomScreening_rings:0 (G4GenericPolycone) ... OK! 
+create detector Prism...
+Checking overlaps for volume Cathode_rings:0 (G4GenericPolycone) ... OK! 
+create detector Prism...
+Checking overlaps for volume Gate_rings:0 (G4GenericPolycone) ... OK! 
+create detector Array...
+create detector Prism...
+Checking overlaps for volume Shapingrings:0 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Shapingrings:1 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Shapingrings:2 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Shapingrings:3 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Shapingrings:4 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Shapingrings:5 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Shapingrings:6 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Shapingrings:7 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Shapingrings:8 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Shapingrings:9 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Shapingrings:10 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Shapingrings:11 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Shapingrings:12 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Shapingrings:13 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Shapingrings:14 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Shapingrings:15 (G4GenericPolycone) ... OK! 
+Checking overlaps for volume Shapingrings:16 (G4GenericPolycone) ... OK! 
+create detector Array...
+create detector Cuboid...
+Checking overlaps for volume TopKee2:0 (G4Box) ... OK! 
+Checking overlaps for volume TopKee2:1 (G4Box) ... OK! 
+Checking overlaps for volume TopKee2:2 (G4Box) ... OK! 
+Checking overlaps for volume TopKee2:3 (G4Box) ... OK! 
+create detector Prism...
+Checking overlaps for volume XeSideTeflon1:0 (G4GenericPolycone) ... OK! 
+create detector Array...
+create detector PMTsR8520...
+Checking overlaps for volume Base:0 (G4Box) ... OK! 
+Checking overlaps for volume Window:0 (G4Box) ... OK! 
+Checking overlaps for volume Casing:0 (G4Box) ... OK! 
+Checking overlaps for volume Interior:0 (G4Box) ... OK! 
+Checking overlaps for volume PhotoCathode:0 (G4Box) ... OK! 
+Set G4LogicalSkinSurface to BaseLogicalVolume with Cirlex_Surface
+Set G4LogicalSkinSurface to WindowLogicalVolume with Quartz_Surface
+Set G4LogicalSkinSurface to CasingLogicalVolume with SS304LSteel_Surface
+Set G4LogicalSkinSurface to PhotoCathodeLogicalVolume with PhotoCathodeAluminium_Surface
+Checking overlaps for volume R8520:28 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:29 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:30 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:31 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:32 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:33 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:34 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:35 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:36 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:37 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:38 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:39 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:40 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:41 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:42 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:43 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:44 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:45 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:46 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:47 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:48 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:49 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:50 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:51 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:52 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:53 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:54 (G4UnionSolid) ... OK! 
+Checking overlaps for volume R8520:55 (G4UnionSolid) ... OK! 
+Run manager initialization done!
+Visualization Manager instantiating with verbosity "warnings (3)"...
+Visualization Manager initialising...
+Registering graphics systems...
+
+You have successfully registered the following graphics systems.
+Registered graphics systems are:
+  ASCIITree (ATree)
+  DAWNFILE (DAWNFILE)
+  G4HepRepFile (HepRepFile)
+  RayTracer (RayTracer)
+  VRML2FILE (VRML2FILE)
+  gMocrenFile (gMocrenFile)
+  TOOLSSG_OFFSCREEN (TSG_OFFSCREEN)
+  TOOLSSG_OFFSCREEN (TSG_OFFSCREEN, TSG_FILE)
+  OpenGLImmediateQt (OGLIQt, OGLI)
+  OpenGLStoredQt (OGLSQt, OGL, OGLS)
+  OpenGLImmediateX (OGLIX, OGLIQt_FALLBACK)
+  OpenGLStoredX (OGLSX, OGLSQt_FALLBACK)
+  RayTracerX (RayTracerX)
+  Qt3D (Qt3D)
+  TOOLSSG_X11_GLES (TSG_X11_GLES, TSGX11, TSG_QT_GLES_FALLBACK)
+  TOOLSSG_QT_GLES (TSG_QT_GLES, TSGQt, TSG)
+
+Registering model factories...
+
+You have successfully registered the following model factories.
+Registered model factories:
+  generic
+  drawByAttribute
+  drawByCharge
+  drawByOriginVolume
+  drawByParticleID
+  drawByEncounteredVolume
+
+Registered models:
+  None
+
+Registered filter factories:
+  attributeFilter
+  chargeFilter
+  originVolumeFilter
+  particleFilter
+  encounteredVolumeFilter
+
+Registered filters:
+  None
+
+You have successfully registered the following user vis actions.
+Run Duration User Vis Actions: none
+End of Event User Vis Actions: none
+End of Run User Vis Actions: none
+
+Some /vis commands (optionally) take a string to specify colour.
+"/vis/list" to see available colours.
+Visualization manager initialization done!
+G4VisManager: Using G4TrajectoryDrawByCharge as fallback trajectory model.
+See commands in /vis/modeling/trajectories/ for other options.
+### Run 58 start.
+Processing event 0...
+
+----------End of Run 58----------
+RelicsOpticalDataManager: Write data to tree...
+
+----------Printing Mass of Geometry ----------
+                    World:                   G4_AIR:                  9621.85 kg:                  1.20479 mg/cm3:                     8000 m3 :                     2400 m2    
+                 Concrete:                 concrete:                     2875 kg:                      2.3 g/cm3 :                     1.25 m3 :                       51 m2    
+                       PE:          G4_POLYETHYLENE:                  10170.8 kg:                      940 mg/cm3:                    12.42 m3 :                    32.42 m2    
+                     Lead:                    G4_Pb:                  4369.75 kg:                    11.35 g/cm3 :                      1.6 m3 :                      8.4 m2    
+                  InnerPE:          G4_POLYETHYLENE:                  403.696 kg:                      940 mg/cm3:                    1.215 m3 :                     7.02 m2    
+                       PS:                       PS:                  361.667 kg:                    1.023 g/cm3 :                  785.536 L  :                   5.2896 m2    
+                      Air:                   G4_AIR:                  430.957 g :                  1.20479 mg/cm3:                      432 L  :                      3.6 m2    
+                 Flange35:                   Flange:                  507.146 g :                        8 g/cm3 :                  6.33933 cL :                  138.889 cm2   
+                 Flange63:                   Flange:                  1.87079 kg:                        8 g/cm3 :                  2.33848 dL :                  332.648 cm2   
+           OuterContainer:              SS304LSteel:                  49.3119 kg:                        8 g/cm3 :                  72.6406 L  :                  9993.55 cm2   
+                   Vacuum:                   Vacuum:              4.05016e-13 mg:                    1e-17 mg/cm3:                  66.4766 L  :                  8990.53 cm2   
+           InnerContainer:              SS304LSteel:                  23.6746 kg:                        8 g/cm3 :                   25.975 L  :                  5070.72 cm2   
+               OuterGasXe:                      GXe:                  37.6952 g :                    5.887 mg/cm3:                  7.18177 L  :                  1992.72 cm2   
+                    Anode:              SS304LSteel:                  2.57149 g :                        8 g/cm3 :                  321.437 mm3:                  68.1025 cm2   
+              Anode_rings:              SS304LSteel:                  109.956 g :                        8 g/cm3 :                  1.37445 cL :                  109.956 cm2   
+              TopBasePEEK:              PMTbasePEEK:                  163.921 g :                     1.32 g/cm3 :                  1.24183 dL :                  691.361 cm2   
+                  TopKeel:                   Teflon:                  12.9603 g :                      2.2 g/cm3 :                  5.89104 cm3:                  21.6046 cm2   
+             TopPMTTeflon:                   Teflon:                  93.0066 g :                      2.2 g/cm3 :                  4.22757 cL :                  431.802 cm2   
+            XeSideTeflon0:                   Teflon:                  73.6572 g :                      2.2 g/cm3 :                  3.34805 cL :                  294.155 cm2   
+                    R8520:                      GXe:              -0.00184198 mg:                    5.887 mg/cm3:                  1.93242 cL :                  55.8103 cm2   
+                     Base:                   Cirlex:                  1.38387 g :                     1.43 g/cm3 :                   967.74 mm3:                  14.4272 cm2   
+                   Window:                   Quartz:                  2.06344 g :                    2.201 g/cm3 :                    937.5 mm3:                       14 cm2   
+                   Casing:              SS304LSteel:                  13.5837 g :                        8 g/cm3 :                  1.74193 cL :                  40.3352 cm2   
+                 Interior:                   Vacuum:              1.54794e-16 mg:                    1e-17 mg/cm3:                  1.54794 cL :                  37.2832 cm2   
+             PhotoCathode:    PhotoCathodeAluminium:                    1.936 g :                        8 g/cm3 :                      242 mm3:                    10.12 cm2   
+                XenonVeto:                      LXe:                  20.7959 kg:                    2.862 g/cm3 :                   15.834 L  :                  3385.16 cm2   
+              BotBasePEEK:              PMTbasePEEK:                  163.959 g :                     1.32 g/cm3 :                  1.24211 dL :                  681.525 cm2   
+         Lxe_OutContainer:              SS304LSteel:                  2.12251 kg:                        8 g/cm3 :                  1.99013 L  :                  1110.87 cm2   
+       Lxe_InnerContainer:                      LXe:                  4.93642 kg:                    2.862 g/cm3 :                  1.72481 L  :                  1052.28 cm2   
+            XenonDetector:                      LXe:                  10.9044 kg:                    2.862 g/cm3 :                   5.9123 L  :                  1813.88 cm2   
+             BotPMTTeflon:                   Teflon:                  93.1614 g :                      2.2 g/cm3 :                  4.23461 cL :                  418.834 cm2   
+          BottomScreening:              SS304LSteel:                  2.74543 g :                        8 g/cm3 :                  343.179 mm3:                  70.1037 cm2   
+                  Cathode:              SS304LSteel:                  2.70578 g :                        8 g/cm3 :                  338.223 mm3:                  64.8308 cm2   
+                     Gate:              SS304LSteel:                  2.72182 g :                        8 g/cm3 :                  340.227 mm3:                   67.499 cm2   
+               XenonVeto1:                      LXe:                  3.97445 kg:                    2.862 g/cm3 :                  2.05886 L  :                  2284.25 cm2   
+    BottomScreening_rings:              SS304LSteel:                  109.956 g :                        8 g/cm3 :                  1.37445 cL :                  109.956 cm2   
+            Cathode_rings:              SS304LSteel:                  109.956 g :                        8 g/cm3 :                  1.37445 cL :                  109.956 cm2   
+               Gate_rings:              SS304LSteel:                  109.956 g :                        8 g/cm3 :                  1.37445 cL :                  109.956 cm2   
+             Shapingrings:                   Copper:                  122.601 g :                     8.92 g/cm3 :                  1.37445 cL :                  109.956 cm2   
+                  TopKee2:                   Teflon:                  89.8054 g :                      2.2 g/cm3 :                  4.08206 cL :                  122.255 cm2   
+            XeSideTeflon1:                   Teflon:                  510.391 g :                      2.2 g/cm3 :                  2.31996 dL :                  1882.28 cm2   
+
+-----------Printed Mass of Geometry ----------
+Graphics systems deleted.
+Visualization Manager deleting...
+RelicsOpticalRunAction destructed.
+RelicsOpticalEventAction destructed.
+RelicsOpticalDataManager destructed.

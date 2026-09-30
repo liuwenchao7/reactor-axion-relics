@@ -1,0 +1,12 @@
+/control/getEnv ISOTOPEFILE
+#/control/echo {ISOTOPEFILE}
+/control/execute {ISOTOPEFILE}
+
+/cgs/ang/type iso
+
+/cgs/conf/material Quartz
+
+/cgs/shape Cylinder
+/cgs/radius 20 cm
+/cgs/halfz 50 cm
+/cgs/centre -2.5 0 -2.5 cm

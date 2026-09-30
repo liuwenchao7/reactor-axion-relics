@@ -1,0 +1,12 @@
+nohup: ignoring input
+finish the function,then read the data
+finish reading data,then output the message
+lxe NR rate: 0
+lxe NR error: 0.0
+lxe ER rate: 0.026723763361161546
+lxe ER error: 0.0009190133776054824
+lxe ER rate(mDRU): 1.3361881680580772
+lxe ER error(mDRU): 0.04595066888027412
+bins_nr=np.logspace(-4, 7, 101)
+bins_er=np.linspace(0,20,21)
+max ER 20.0

@@ -1,0 +1,12 @@
+/control/getEnv ISOTOPEFILE
+#/control/echo {ISOTOPEFILE}
+/control/execute {ISOTOPEFILE}
+
+/cgs/ang/type iso
+
+/cgs/conf/material Flange
+
+/cgs/shape Cylinder
+/cgs/radius 21 cm
+/cgs/halfz 55 cm
+/cgs/centre -2.5 0 -2.5 cm

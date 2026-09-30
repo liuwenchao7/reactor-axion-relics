@@ -1,0 +1,6 @@
+nohup: ignoring input
+LXe mass: 10.9045 kg
+-----------------------
+Processing LXe Material...
+LXe ER spectrum saved to ./ER_0_200keV_1000bins
+LXe counts sum: 0.041283980890099714 DRU

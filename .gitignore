@@ -1,0 +1,21 @@
+# Generated build directory
+build/
+
+# Simulation output (large ROOT/HDF5 files)
+result/*.root
+result/*.h5
+
+# IDE
+.vscode/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db

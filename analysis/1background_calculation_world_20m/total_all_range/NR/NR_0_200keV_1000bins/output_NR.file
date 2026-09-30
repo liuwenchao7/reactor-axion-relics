@@ -1,0 +1,6 @@
+nohup: ignoring input
+NR energy range: 0 - 200 keV, bins: 1000
+LXe mass: 10.9045 kg
+-----------------------
+Total NR spectrum saved to ./NR_0_200keV_1000bins
+Sum of total_counts: 39.585244205310346 DRU

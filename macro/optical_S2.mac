@@ -1,0 +1,13 @@
+/cgs/particle alpha
+/cgs/energy 1 keV
+
+/cgs/ang/type iso
+
+/cgs/conf/material GXe
+
+/cgs/shape Cylinder
+/cgs/radius 15 cm
+/cgs/halfz 0.25 cm
+/cgs/centre 0 0 10.25 cm
+
+/tracking/verbose 0

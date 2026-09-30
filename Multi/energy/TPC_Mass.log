@@ -1,0 +1,52 @@
+Total muon rate is 5370.55Hz
+Total muon rate is 149.18Hz/m^2
+Total CRN rate is 357.97Hz
+Total CRN rate is 9.94Hz/m^2
+ 0 World
+ 1 Concrete
+ 2 Water_top
+ 3 Water_down
+ 4 Water_close
+ 5 Water_far
+ 6 Water_side1
+ 7 Water_side2
+ 8 Water
+ 9 OuterContainer
+10 Vacuum
+11 Flange63
+12 Flange35
+13 InnerContainer
+14 OuterGasXe
+15 XenonVeto
+16 Lxe_OutContainer
+17 Lxe_InnerContainer
+18 XenonDetector
+19 XenonVeto1
+20 BotPMTTeflon
+21 XeSideTeflon1
+22 Shapingrings
+23 TopKee2
+24 bR8520
+25 BotBasePEEK
+26 TopPMTTeflon
+27 TopBasePEEK
+28 TopKeel
+29 tR8520
+30 XeSideTeflon0
+31 Cathode
+32 BottomScreening
+33 Gate
+34 Anode
+35 Cathode_rings
+36 BottomScreening_rings
+37 Gate_rings
+38 Anode_rings
+copper mass is 0.1226 kg
+steel mass is 77.5114 kg
+Teflon mass is 0.8729 kg
+PMTwindow mass is 0.0021 kg
+PMTbase mass is 0.0014 kg
+Flange mass is 2.3779 kg
+lXe mass is 35.6752 kg
+XenonVeto mass is 24.7706 kg
+XenonDetector mass is 10.9046 kg

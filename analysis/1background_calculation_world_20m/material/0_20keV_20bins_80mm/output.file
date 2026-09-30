@@ -1,0 +1,12 @@
+nohup: ignoring input
+finish the function,then read the data
+finish reading data,then output the message
+finish reading data,then output the message
+Material ER rate: 3.592366156260751 /kg/days/keV
+Material ER error: 0.006360574273814495
+Material ER rate(mDRU): 3592.3661562607513
+Material ER error(mDRU): 6.360574273814495
+bins_er=np.linspace(0,20,21)
+max ER 20.0
+min ER 0
+FV mass 8.981167987818466

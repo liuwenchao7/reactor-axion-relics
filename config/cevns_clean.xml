@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <BambooMC>
+    <run number="0"/>
+    <geometry>
+      <material name="Material"/>
+      <detector type="World" name="World">
+        <parameter name="half_x" value="1000*cm"/>
+        <parameter name="half_y" value="1000*cm"/>
+        <parameter name="half_z" value="1000*cm"/>
+      </detector>
+      <detector type="Prism" name="XenonDetector" parent="World">
+        <parameter name="soliname" value="XenonDetectorSolid"/>
+        <parameter name="logivol" value="XenonDetectorLog"/>
+        <parameter name="physvol" value="XenonDetector"/>
+        <parameter name="outer_radius" value="10.257912876047213*cm"/>
+        <parameter name="sides" value="0"/>
+        <parameter name="height" value="17.884999999999998*cm"/>
+        <parameter name="material" value="LXe"/>
+        <parameter name="shift_z" value="-8.942499999999999*cm"/>
+        <parameter name="sendname" value="XenonDetector"/>
+      </detector>
+      <detector type="Prism" name="XenonVeto1" parent="XenonDetector">
+        <parameter name="soliname" value="XenonVeto1Solid"/>
+        <parameter name="logivol" value="XenonVeto1Log"/>
+        <parameter name="physvol" value="XenonVeto1"/>
+        <parameter name="outer_radius" value="10.257912876047213*cm"/>
+        <parameter name="inner_radius" value="8.25*cm"/>
+        <parameter name="sides" value="0"/>
+        <parameter name="height" value="17.634999999999998*cm"/>
+        <parameter name="material" value="LXe"/>
+        <parameter name="shift_z" value="0.125*cm"/>
+        <parameter name="sendname" value="XenonVeto1"/>
+      </detector>
+      <detector type="HolesBoard" name="BotPMTTeflon" parent="XenonDetector">
+        <parameter name="soliname" value="BotPMTTeflonSolid"/>
+        <parameter name="logivol" value="BotPMTTeflonLog"/>
+        <parameter name="physvol" value="BotPMTTeflon"/>
+        <parameter name="radius" value="10.257912876047213*cm"/>
+        <parameter name="sides" value="0"/>
+        <parameter name="height" value="0.25*cm"/>
+        <parameter name="width_x" value="2.4*cm"/>
+        <parameter name="material" value="Teflon"/>
+        <parameter name="shift_z" value="-8.817499999999999*cm"/>
+        <parameter name="source" value="data/XeInBotPMTTeflon.txt"/>
+        <parameter name="surface" value="0"/>
+      </detector>
+      <detector type="Prism" name="XeSideTeflon1" parent="XenonVeto1">
+        <parameter name="soliname" value="XeSideTeflon1Solid"/>
+        <parameter name="logivol" value="XeSideTeflon1Log"/>
+        <parameter name="physvol" value="XeSideTeflon1"/>
+        <parameter name="outer_radius" value="8.5*cm"/>
+        <parameter name="inner_radius" value="8.25*cm"/>
+        <parameter name="sides" value="0"/>
+        <parameter name="height" value="17.634999999999998*cm"/>
+        <parameter name="material" value="Teflon"/>
+        <parameter name="surface" value="0"/>
+      </detector>
+      <detector type="Array" name="Shapingrings" parent="XenonVeto1">
+        <parameter name="soliname" value="ShapingringsSolid"/>
+        <parameter name="logivol" value="ShapingringsLog"/>
+        <parameter name="physvol" value="Shapingrings"/>
+        <parameter name="objects" value="Prism"/>
+        <parameter name="outer_radius" value="9.0*cm"/>
+        <parameter name="inner_radius" value="8.5*cm"/>
+        <parameter name="sides" value="0"/>
+        <parameter name="height" value="0.5*cm"/>
+        <parameter name="material" value="Copper"/>
+        <parameter name="surface" value="0"/>
+        <parameter name="source" value="data/shapingrings.txt"/>
+      </detector>
+      <detector type="Array" name="TopKee2" parent="XenonVeto1">
+        <parameter name="soliname" value="TopKee2Solid"/>
+        <parameter name="logivol" value="TopKee2Log"/>
+        <parameter name="physvol" value="TopKee2"/>
+        <parameter name="objects" value="Cuboid"/>
+        <parameter name="width_x" value="0.985*cm"/>
+        <parameter name="width_y" value="2.35*cm"/>
+        <parameter name="width_z" value="17.634999999999998*cm"/>
+        <parameter name="material" value="Teflon"/>
+        <parameter name="shift_z" value="0*cm"/>
+        <parameter name="source" value="data/keel_LXe.txt"/>
+        <parameter name="surface" value="0"/>
+      </detector>
+      <detector type="MeshGrid" name="Cathode" parent="XenonDetector">
+        <parameter name="soliname" value="CathodeSolid"/>
+        <parameter name="logivol" value="CathodeLog"/>
+        <parameter name="physvol" value="Cathode"/>
+        <parameter name="shift_z" value="-6.665000000000001*cm"/>
+        <parameter name="radius" value="8.25*cm"/>
+        <parameter name="sides" value="0"/>
+        <parameter name="material" value="SS304LSteel"/>
+        <parameter name="surface" value="0"/>
+      </detector>
+      <detector type="MeshGrid" name="BottomScreening" parent="XenonDetector">
+        <parameter name="soliname" value="BottomScreeningSolid"/>
+        <parameter name="logivol" value="BottomScreeningLog"/>
+        <parameter name="physvol" value="BottomScreening"/>
+        <parameter name="shift_z" value="-8.68*cm"/>
+        <parameter name="radius" value="8.25*cm"/>
+        <parameter name="sides" value="0"/>
+        <parameter name="material" value="SS304LSteel"/>
+        <parameter name="surface" value="0"/>
+      </detector>
+      <detector type="MeshGrid" name="Gate" parent="XenonDetector">
+        <parameter name="soliname" value="GateSolid"/>
+        <parameter name="logivol" value="GateLog"/>
+        <parameter name="physvol" value="Gate"/>
+        <parameter name="shift_z" value="8.692499999999999*cm"/>
+        <parameter name="radius" value="8.25*cm"/>
+        <parameter name="sides" value="0"/>
+        <parameter name="material" value="SS304LSteel"/>
+        <parameter name="surface" value="0"/>
+      </detector>
+      <detector type="Prism" name="Cathode_rings" parent="XenonVeto1">
+        <parameter name="soliname" value="Cathode_ringsSolid"/>
+        <parameter name="logivol" value="Cathode_ringsLog"/>
+        <parameter name="physvol" value="Cathode_rings"/>
+        <parameter name="shift_z" value="-7.040000000000001*cm"/>
+        <parameter name="outer_radius" value="9.0*cm"/>
+        <parameter name="inner_radius" value="8.5*cm"/>
+        <parameter name="height" value="0.5*cm"/>
+        <parameter name="sides" value="0*cm"/>
+        <parameter name="material" value="SS304LSteel"/>
+        <parameter name="surface" value="0"/>
+      </detector>
+      <detector type="Prism" name="BottomScreening_rings" parent="XenonVeto1">
+        <parameter name="soliname" value="BottomScreening_ringsSolid"/>
+        <parameter name="logivol" value="BottomScreening_ringsLog"/>
+        <parameter name="physvol" value="BottomScreening_rings"/>
+        <parameter name="shift_z" value="-8.555*cm"/>
+        <parameter name="outer_radius" value="9.0*cm"/>
+        <parameter name="inner_radius" value="8.5*cm"/>
+        <parameter name="height" value="0.5*cm"/>
+        <parameter name="sides" value="0*cm"/>
+        <parameter name="material" value="SS304LSteel"/>
+        <parameter name="surface" value="0"/>
+      </detector>
+      <detector type="Prism" name="Gate_rings" parent="XenonVeto1">
+        <parameter name="soliname" value="Gate_ringsSolid"/>
+        <parameter name="logivol" value="Gate_ringsLog"/>
+        <parameter name="physvol" value="Gate_rings"/>
+        <parameter name="shift_z" value="8.317499999999999*cm"/>
+        <parameter name="outer_radius" value="9.0*cm"/>
+        <parameter name="inner_radius" value="8.5*cm"/>
+        <parameter name="height" value="0.5*cm"/>
+        <parameter name="sides" value="0*cm"/>
+        <parameter name="material" value="SS304LSteel"/>
+        <parameter name="surface" value="0"/>
+      </detector>
+    </geometry>
+    <physics name="PandaXPhysics">
+      <parameter name="cutlength" value="0.1*mm"/>
+    </physics>
+    <generator name="SimpleGPSGenerator"/>
+    <analysis name="PandaXAnalysis">
+      <parameter name="EnableEnergyDeposition" value="1"/>
+      <parameter name="EnableSurfaceFlux" value="0"/>
+      <parameter name="EnablePrimaryParticle" value="1"/>
+      <parameter name="SaveNullEvents" value="0"/>
+      <parameter name="EnableDecayChainSplitting" value="1"/>
+      <parameter name="ChainSplittingLifeTime" value="400*us"/>
+      <parameter name="UserSeed" value="0"/>
+      <parameter name="GetGeoMass" value="0"/>
+    </analysis>
+  </BambooMC>

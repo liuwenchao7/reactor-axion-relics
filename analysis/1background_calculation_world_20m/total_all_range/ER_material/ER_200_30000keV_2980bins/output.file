@@ -1,0 +1,6 @@
+nohup: ignoring input
+LXe mass: 10.9045 kg
+-----------------------
+Processing Main Materials (Steel/Teflon/PMT/Flange)...
+Material ER spectrum saved to ./ER_200_30000keV_2980bins
+Material counts sum: 0.0846909799948216 DRU

@@ -1,0 +1,16 @@
+nohup: ignoring input
+Run
+<class 'int'>
+<class 'int'>
+<class 'int'>
+<class 'int'>
+<class 'int'>
+LXe mass: 8.98116798781847 kg
+-----------------------
+finish the function,then read the data
+finish reading data,then output the message
+muon NR rate: {'muon': 0.3030996531956887} /kg/days
+muon NR error: {'muon': 0.03388757142510857}
+bins_nr=np.logspace(-4, 7, 101)
+bins_er=np.linspace(0,20,21)
+max ER 20.0

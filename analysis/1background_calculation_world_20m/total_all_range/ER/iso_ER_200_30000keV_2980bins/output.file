@@ -1,0 +1,22 @@
+nohup: ignoring input
+LXe mass: 10.9045 kg
+-----------------------
+Processing CRN...
+Processing Gamma Bottom...
+Processing Gamma Front...
+Processing Gamma Side...
+Processing Main Materials (Steel/Teflon/PMT/Flange)...
+Processing Muon...
+Traceback (most recent call last):
+  File "total_ER_200_30000keV_2980bins_no_cut.py", line 296, in <module>
+    'Lead': '/public/home/yyy/RELICS5/RELICS10_v2_0_basic_design_260304/solid_v2_0_4_2_PE_shielding_bot_side_Lead_5cm_thickness_260622/side_distance_side_15cm_top_bottom_15cm/result/Material/Lead_5B'
+  File "total_ER_200_30000keV_2980bins_no_cut.py", line 162, in process_muon
+    with h5py.File(files[0], 'r') as ipt:
+  File "/public/apps/anaconda3/envs/relics3/lib/python3.8/site-packages/h5py/_hl/files.py", line 567, in __init__
+    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
+  File "/public/apps/anaconda3/envs/relics3/lib/python3.8/site-packages/h5py/_hl/files.py", line 231, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 106, in h5py.h5f.open
+FileNotFoundError: [Errno 2] Unable to open file (unable to open file: name = '../../../../result/muon_300M_6m/events_muon.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)

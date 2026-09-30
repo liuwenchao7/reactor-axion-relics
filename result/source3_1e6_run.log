@@ -1,0 +1,256 @@
+Version: unknown
+load xml config
+Control loaded.
+run: 0
+material: Material
+detector: World (World)
+ -- parameter: half_x = 1000*cm
+ -- parameter: half_y = 1000*cm
+ -- parameter: half_z = 1000*cm
+detector: XenonDetector (Prism) (in World)
+ -- parameter: height = 17.884999999999998*cm
+ -- parameter: logivol = XenonDetectorLog
+ -- parameter: material = LXe
+ -- parameter: outer_radius = 10.257912876047213*cm
+ -- parameter: physvol = XenonDetector
+ -- parameter: sendname = XenonDetector
+ -- parameter: shift_z = -8.942499999999999*cm
+ -- parameter: sides = 0
+ -- parameter: soliname = XenonDetectorSolid
+detector: BotPMTTeflon (HolesBoard) (in XenonDetector)
+ -- parameter: height = 0.25*cm
+ -- parameter: logivol = BotPMTTeflonLog
+ -- parameter: material = Teflon
+ -- parameter: physvol = BotPMTTeflon
+ -- parameter: radius = 10.257912876047213*cm
+ -- parameter: shift_z = -8.817499999999999*cm
+ -- parameter: sides = 0
+ -- parameter: soliname = BotPMTTeflonSolid
+ -- parameter: source = data/XeInBotPMTTeflon.txt
+ -- parameter: surface = 0
+ -- parameter: width_x = 2.4*cm
+detector: BottomScreening (MeshGrid) (in XenonDetector)
+ -- parameter: logivol = BottomScreeningLog
+ -- parameter: material = SS304LSteel
+ -- parameter: physvol = BottomScreening
+ -- parameter: radius = 8.25*cm
+ -- parameter: shift_z = -8.68*cm
+ -- parameter: sides = 0
+ -- parameter: soliname = BottomScreeningSolid
+ -- parameter: surface = 0
+detector: Cathode (MeshGrid) (in XenonDetector)
+ -- parameter: logivol = CathodeLog
+ -- parameter: material = SS304LSteel
+ -- parameter: physvol = Cathode
+ -- parameter: radius = 8.25*cm
+ -- parameter: shift_z = -6.665000000000001*cm
+ -- parameter: sides = 0
+ -- parameter: soliname = CathodeSolid
+ -- parameter: surface = 0
+detector: Gate (MeshGrid) (in XenonDetector)
+ -- parameter: logivol = GateLog
+ -- parameter: material = SS304LSteel
+ -- parameter: physvol = Gate
+ -- parameter: radius = 8.25*cm
+ -- parameter: shift_z = 8.692499999999999*cm
+ -- parameter: sides = 0
+ -- parameter: soliname = GateSolid
+ -- parameter: surface = 0
+detector: XenonVeto1 (Prism) (in XenonDetector)
+ -- parameter: height = 17.634999999999998*cm
+ -- parameter: inner_radius = 8.25*cm
+ -- parameter: logivol = XenonVeto1Log
+ -- parameter: material = LXe
+ -- parameter: outer_radius = 10.257912876047213*cm
+ -- parameter: physvol = XenonVeto1
+ -- parameter: sendname = XenonVeto1
+ -- parameter: shift_z = 0.125*cm
+ -- parameter: sides = 0
+ -- parameter: soliname = XenonVeto1Solid
+detector: BottomScreening_rings (Prism) (in XenonVeto1)
+ -- parameter: height = 0.5*cm
+ -- parameter: inner_radius = 8.5*cm
+ -- parameter: logivol = BottomScreening_ringsLog
+ -- parameter: material = SS304LSteel
+ -- parameter: outer_radius = 9.0*cm
+ -- parameter: physvol = BottomScreening_rings
+ -- parameter: shift_z = -8.555*cm
+ -- parameter: sides = 0*cm
+ -- parameter: soliname = BottomScreening_ringsSolid
+ -- parameter: surface = 0
+detector: Cathode_rings (Prism) (in XenonVeto1)
+ -- parameter: height = 0.5*cm
+ -- parameter: inner_radius = 8.5*cm
+ -- parameter: logivol = Cathode_ringsLog
+ -- parameter: material = SS304LSteel
+ -- parameter: outer_radius = 9.0*cm
+ -- parameter: physvol = Cathode_rings
+ -- parameter: shift_z = -7.040000000000001*cm
+ -- parameter: sides = 0*cm
+ -- parameter: soliname = Cathode_ringsSolid
+ -- parameter: surface = 0
+detector: Gate_rings (Prism) (in XenonVeto1)
+ -- parameter: height = 0.5*cm
+ -- parameter: inner_radius = 8.5*cm
+ -- parameter: logivol = Gate_ringsLog
+ -- parameter: material = SS304LSteel
+ -- parameter: outer_radius = 9.0*cm
+ -- parameter: physvol = Gate_rings
+ -- parameter: shift_z = 8.317499999999999*cm
+ -- parameter: sides = 0*cm
+ -- parameter: soliname = Gate_ringsSolid
+ -- parameter: surface = 0
+detector: Shapingrings (Array) (in XenonVeto1)
+ -- parameter: height = 0.5*cm
+ -- parameter: inner_radius = 8.5*cm
+ -- parameter: logivol = ShapingringsLog
+ -- parameter: material = Copper
+ -- parameter: objects = Prism
+ -- parameter: outer_radius = 9.0*cm
+ -- parameter: physvol = Shapingrings
+ -- parameter: sides = 0
+ -- parameter: soliname = ShapingringsSolid
+ -- parameter: source = data/shapingrings.txt
+ -- parameter: surface = 0
+detector: TopKee2 (Array) (in XenonVeto1)
+ -- parameter: logivol = TopKee2Log
+ -- parameter: material = Teflon
+ -- parameter: objects = Cuboid
+ -- parameter: physvol = TopKee2
+ -- parameter: shift_z = 0*cm
+ -- parameter: soliname = TopKee2Solid
+ -- parameter: source = data/keel_LXe.txt
+ -- parameter: surface = 0
+ -- parameter: width_x = 0.985*cm
+ -- parameter: width_y = 2.35*cm
+ -- parameter: width_z = 17.634999999999998*cm
+detector: XeSideTeflon1 (Prism) (in XenonVeto1)
+ -- parameter: height = 17.634999999999998*cm
+ -- parameter: inner_radius = 8.25*cm
+ -- parameter: logivol = XeSideTeflon1Log
+ -- parameter: material = Teflon
+ -- parameter: outer_radius = 8.5*cm
+ -- parameter: physvol = XeSideTeflon1
+ -- parameter: sides = 0
+ -- parameter: soliname = XeSideTeflon1Solid
+ -- parameter: surface = 0
+physics: PandaXPhysics
+physics parameter: cutlength = 0.1*mm
+generator: SimpleGPSGenerator
+analysis: PandaXAnalysis
+analysis parameter: ChainSplittingLifeTime = 400*us
+analysis parameter: DataFileName = result/gamma_source3_1e6_clean.root
+analysis parameter: EnableDecayChainSplitting = 1
+analysis parameter: EnableEnergyDeposition = 1
+analysis parameter: EnablePrimaryParticle = 1
+analysis parameter: EnableSurfaceFlux = 0
+analysis parameter: GetGeoMass = 0
+analysis parameter: SaveNullEvents = 0
+analysis parameter: UserSeed = 0
+
+**************************************************************
+ Geant4 version Name: geant4-11-01-patch-01 [MT]   (10-February-2023)
+                       Copyright : Geant4 Collaboration
+                      References : NIM A 506 (2003), 250-303
+                                 : IEEE-TNS 53 (2006), 270-278
+                                 : NIM A 835 (2016), 186-225
+                             WWW : http://geant4.org/
+**************************************************************
+
+default cut length: 0.1 mm
+Avaliable elements: 
+H B C N O F Al Si Ar Ca Cr Mn Fe Ni Cu Xe 
+Available materials: 
+Vacuum Air LXe GXe Quartz PhotoCathodeAluminium Copper SS304LSteel Flange Teflon Cirlex G4_AIR G4_POLYETHYLENE G4_Pb concrete G4_WATER PEEK PMTbasePEEK PS 
+create detector World...
+create detector Prism...
+create detector HolesBoard...
+create detector MeshGrid...
+create detector MeshGrid...
+create detector MeshGrid...
+create detector Prism...
+create detector Prism...
+create detector Prism...
+create detector Prism...
+create detector Array...
+create detector Prism...
+create detector Array...
+create detector Cuboid...
+create detector Prism...
+Run manager initialization done!
+Visualization Manager instantiating with verbosity "warnings (3)"...
+Visualization Manager initialising...
+Registering graphics systems...
+
+You have successfully registered the following graphics systems.
+Registered graphics systems are:
+  ASCIITree (ATree)
+  DAWNFILE (DAWNFILE)
+  G4HepRepFile (HepRepFile)
+  RayTracer (RayTracer)
+  VRML2FILE (VRML2FILE)
+  gMocrenFile (gMocrenFile)
+  TOOLSSG_OFFSCREEN (TSG_OFFSCREEN)
+  TOOLSSG_OFFSCREEN (TSG_OFFSCREEN, TSG_FILE)
+  OpenGLImmediateQt (OGLIQt, OGLI)
+  OpenGLStoredQt (OGLSQt, OGL, OGLS)
+  OpenGLImmediateX (OGLIX, OGLIQt_FALLBACK)
+  OpenGLStoredX (OGLSX, OGLSQt_FALLBACK)
+  RayTracerX (RayTracerX)
+  TOOLSSG_X11_GLES (TSG_X11_GLES, TSGX11, TSG_QT_GLES_FALLBACK)
+  TOOLSSG_QT_GLES (TSG_QT_GLES, TSGQt, TSG)
+
+Registering model factories...
+
+You have successfully registered the following model factories.
+Registered model factories:
+  generic
+  drawByAttribute
+  drawByCharge
+  drawByOriginVolume
+  drawByParticleID
+  drawByEncounteredVolume
+
+Registered models:
+  None
+
+Registered filter factories:
+  attributeFilter
+  chargeFilter
+  originVolumeFilter
+  particleFilter
+  encounteredVolumeFilter
+
+Registered filters:
+  None
+
+You have successfully registered the following user vis actions.
+Run Duration User Vis Actions: none
+End of Event User Vis Actions: none
+End of Run User Vis Actions: none
+
+Some /vis commands (optionally) take a string to specify colour.
+"/vis/list" to see available colours.
+Visualization manager initialization done!
+/control/execute macro/gammaBeam_source3.mac
+G4VisManager: Using G4TrajectoryDrawByCharge as fallback trajectory model.
+See commands in /vis/modeling/trajectories/ for other options.
+### Run 0 start.
+Processing event 0...
+Processing event 100000...
+Processing event 200000...
+Processing event 300000...
+Processing event 400000...
+Processing event 500000...
+Processing event 600000...
+Processing event 700000...
+Processing event 800000...
+Processing event 900000...
+
+----------End of Run 0----------
+PandaXDataManager: Write data to tree...
+Graphics systems deleted.
+Visualization Manager deleting...
+PandaXRunAction destructed.
+PandaXEventAction destructed.
+PandaXDataManager destructed.

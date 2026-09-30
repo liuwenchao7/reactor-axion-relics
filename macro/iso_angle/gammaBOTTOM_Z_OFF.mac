@@ -1,0 +1,22 @@
+/gps/particle gamma
+
+/gps/pos/type Plane
+/gps/pos/shape Rectangle
+/gps/pos/centre 0 0 -135 cm
+/gps/pos/halfx 500 cm
+/gps/pos/halfy 500 cm
+
+/gps/ang/type iso
+/gps/ang/rot1 1 0 0
+/gps/ang/rot2 0 1 0
+/gps/ang/mintheta 90 deg
+/gps/ang/maxtheta 180 deg
+
+/gps/ene/type Arb
+/gps/ene/diffspec 1
+/gps/hist/type arb
+
+/control/getEnv GAMMAHIST
+#/control/echo {GAMMAHIST}
+/gps/hist/file {GAMMAHIST}
+/gps/hist/inter Lin

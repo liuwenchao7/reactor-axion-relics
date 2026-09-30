@@ -1,0 +1,77 @@
+/vis/open OGL 600x600-0+0
+/vis/viewer/set/autoRefresh false
+/vis/drawVolume
+/vis/viewer/set/background white
+/vis/viewer/set/upVector 0 0 1
+#/vis/scene/add/axes
+#/vis/scene/add/scale 1 m y 1 0 0 manual 1.5 0 -1.5 m
+#/vis/viewer/set/hiddenMarker true
+/vis/viewer/set/hiddenEdge true
+/vis/scene/add/hits
+/vis/scene/add/trajectories
+#/units/list
+
+/vis/geometry/set/colour WaterLog 1 1 1 0 .1
+/vis/geometry/set/colour Water_topLog 1 1 1 0 .1
+/vis/geometry/set/colour Water_downLog 1 1 1 0 .1
+/vis/geometry/set/colour Water_closeLog 1 1 1 0 .1
+/vis/geometry/set/colour Water_farLog 1 1 1 0 .1
+/vis/geometry/set/colour Water_side1Log 1 1 1 0 .1
+/vis/geometry/set/colour Water_side2Log 1 1 1 0 .1
+/vis/geometry/set/colour ConcreteLog 1 1 0 1 .1
+
+/vis/geometry/set/colour OuterContainerLog 1 1 1 1 .9
+/vis/geometry/set/colour InnerContainerLog 1 1 1 1 .9
+/vis/geometry/set/colour OuterGasXeLog 1 1 1 1 .7
+/vis/geometry/set/colour XenonVetoLog 0 0 1 0 .7
+/vis/geometry/set/colour XenonVeto1Log 0 0 0 0 .0
+/vis/geometry/set/visibility XenonVeto1Log 0 0 
+/vis/geometry/set/colour XenonDetectorLog 0 0 0 1 .3
+/vis/geometry/set/colour Lxe_OutContainerLog 1 1 1 1 .9
+/vis/geometry/set/colour Lxe_InnerContainerLog 0 0 1 0 .3
+/vis/geometry/set/colour TopPMTTeflonLog 1 1 1 1 .7
+/vis/geometry/set/colour TopBasePEEKLog 1 0.5 0.7 1 .7
+/vis/geometry/set/colour BotPMTTeflonLog 1 1 1 1 .7
+/vis/geometry/set/colour BotBasePEEKLog 1 0.5 0.7 1 .7
+
+/vis/geometry/set/colour XeSideTeflon1Log 1 1 1 1 .2
+/vis/geometry/set/colour ShapingringsLog 0.5 0.5 0.2 0.9 .3
+/vis/geometry/set/colour XeSideTeflon0Log 1 1 1 1 .2
+
+/vis/geometry/set/colour Cathode_ringsLog 1 0.5 0.2 0.3 .3
+/vis/geometry/set/colour BottomScreening_ringsLog 1 0.5 0.2 0.3 .3
+/vis/geometry/set/colour Gate_ringsLog 1 0.5 0.2 0.3 .3
+/vis/geometry/set/colour Anode_ringsLog 1 0.5 0.2 0.3 .3
+
+#/vis/viewer/set/style wireframe
+#/vis/viewer/set/style cloud
+/vis/viewer/set/numberOfCloudPoints 200000
+/vis/geometry/set/forceCloud BottomScreeningLog 1 1
+/vis/geometry/set/forceCloud CathodeLog 1 1
+/vis/geometry/set/forceCloud GateLog 1 1
+/vis/geometry/set/forceCloud AnodeLog 1 1
+#/vis/geometry/set/forceCloud TopScreeningLog 1 1
+#/vis/geometry/set/daughtersInvisible
+/vis/viewer/set/style surface
+/vis/viewer/set/viewpointThetaPhi 60 30
+
+/vis/geometry/set/visibility BottomScreeningLog 0 0
+/vis/geometry/set/visibility CathodeLog 0 0
+/vis/geometry/set/visibility GateLog 0 0
+/vis/geometry/set/visibility AnodeLog 0 0
+
+#/vis/viewer/addCutawayPlane 0 0 0 m 0 0 -1
+#/vis/viewer/addCutawayPlane 0 0 0 m -1 0 0
+#/vis/viewer/addCutawayPlane 0 0 0 m 0 -1 0
+
+/vis/viewer/set/autoRefresh true
+/vis/viewer/flush
+#/vis/verbose warnings
+
+#/vis/ogl/set/printMode vectored
+#/vis/ogl/set/printMode pixmap
+/vis/ogl/set/printFilename RelicsSim.png
+/vis/ogl/set/printSize 2000 2000
+
+#/vis/geometry/set/visibility OuterPELog 4 0
+#/vis/ogl/export

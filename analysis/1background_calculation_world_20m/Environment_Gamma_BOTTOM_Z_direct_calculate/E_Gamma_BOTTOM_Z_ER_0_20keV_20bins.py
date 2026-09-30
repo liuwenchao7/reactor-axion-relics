@@ -1,0 +1,334 @@
+import sys
+from scipy import optimize as opti
+from scipy.stats import poisson
+from scipy.interpolate import interp1d
+
+import os
+import copy
+import math
+from multiprocessing import Pool, cpu_count
+
+from tqdm import tqdm
+import h5py
+import numpy as np
+import pandas as pd
+
+from scipy.integrate import quad
+from statsmodels.stats.proportion import proportion_confint
+import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
+from matplotlib.colors import LogNorm
+# import radioactivedecay as rd
+
+plt.rcParams['savefig.dpi'] = 300
+plt.rcParams['figure.dpi'] = 100
+plt.rcParams['legend.fontsize'] = 15
+plt.rcParams['font.size'] = 15
+
+# plt.style.use('/public/home/yyy/relics_picture_style_huayu/relics_er.mplstyle')
+
+import numpy as np
+print('Run')
+
+position_lxe = -37 # 单位cm，包含了相对于固体屏蔽体的位移和相对于探测器外层结构的位移
+
+water_shift_z = 0 # 单位cm，包含相对于水屏蔽体的位移
+
+solid_shift_x = -150 # 单位mm
+
+dis_gate = 0.25 # _to_lxe_top, cm
+dis_cathode = 15.3575 # _to_gate, cm
+dis_botscreen = 0.2625# _to_xedetector_bottom, cm
+dis_fv_top_to_lxe = 0.35 #单位cm，因此距离gate为1mm
+fv_r = 80              #主探测器中的半径
+fv_z1= (position_lxe + water_shift_z) * 10              #主探测器的最上端，z_max
+fv_z2= (position_lxe + water_shift_z - dis_gate - dis_cathode) *10                                           #主探测器的最小端，z_min  （只有s2信号无法得到z方向上的位置重建）
+
+veto1=200          #veto中总共最大er能量
+veto2=1000          #veto中总共最大nr能量
+
+#veto有位置的，并不是所有LXe都是veto
+veto_z1 = (position_lxe + water_shift_z) * 10
+veto_z2 = (position_lxe + water_shift_z - dis_gate - dis_cathode - dis_botscreen) * 10
+
+
+
+cut_nr2=0.1            #NR single中   最大的alt的下限（只需要第二个信号幅度过大就可以cut）
+
+
+cut_er1=0.05          #ER single中   最大的ER与第二大的ER之间的关系
+
+cut_nr_er1=0.05         #NR与ER    伴随NR信号同时产生的ER信号的上限
+
+# 手动输入ER最大值
+ER_MAX_0 = 20
+print(type(ER_MAX_0))
+
+ER_MAX = int(ER_MAX_0)
+print(type(ER_MAX))
+
+# 手动输入ER最小值
+ER_MIN_0 = 0
+print(type(ER_MIN_0))
+
+ER_MIN = int(ER_MIN_0)
+print(type(ER_MIN))
+
+# 手动输入bins_ER数
+bins_ER_0 = 20
+print(type(ER_MAX_0))
+
+bins_ER = int(bins_ER_0)
+print(type(bins_ER))
+
+#energy cut   必须大于1keV
+def er_energy(events):
+    mask=events['max_er']<ER_MAX
+    mask&=events['max_er']>= ER_MIN
+    return mask
+
+#veto_cut     针对veto层中，设定ER和NR上限
+def cut_veto_er(events):
+    mask = events['veto_max_er'] > veto1
+    mask &= events['veto_max_er_z'] < veto_z1 
+    mask &= events['veto_max_er_z'] > veto_z2
+    return ~mask
+
+def cut_veto_nr(events):
+    mask = events['veto_max_nr'] > veto2
+    mask &= events['veto_max_nr_z'] < veto_z1 
+    mask &= events['veto_max_nr_z'] > veto_z2
+    return ~mask
+
+
+def cut_veto(events):
+    mask = cut_veto_er(events) & cut_veto_nr(events)
+    return mask
+
+
+#NR_ER       主探测器中同时有NR与ER信号，ER信号有上限
+def cut_nr_er(events):
+    mask = events['max_er'] > cut_nr_er1
+    return ~mask
+
+
+#NR_SS       针对主探测器中的NR信号   设定第二大NR信号不能超过一定的幅值    
+def cut_nr_alt_max(events):
+    mask = events['alt_nr'] > cut_nr2
+    return ~mask
+def cut_nr(events):
+    mask = cut_nr_alt_max(events)
+    return mask
+
+
+#ER_SS      针对主探测器中的ER信号   设定最大ER与第二大ER信号的关系   最大ER的范围
+def cut_er_max_alt(events):
+    mask = events['alt_er'] > cut_er1* events['max_er']
+    return ~mask
+def cut_er(events):
+    mask = cut_er_max_alt(events) 
+    return mask
+
+
+def cut_fv(events,s):
+    mask = np.sqrt((events[f'max_{s}_x']-solid_shift_x) ** 2 + events[f'max_{s}_y'] ** 2) < fv_r
+    mask &= events[f'max_{s}_z'] < fv_z1
+    mask &= events[f'max_{s}_z'] > fv_z2
+    return mask 
+
+def cut_nr_t(events):
+    mask = events['max_nr_t'] < 1e8
+    return mask
+
+def cut_er_t(events):
+    mask = events['max_er_t'] < 1e8
+    return mask
+
+def rate_error(events,nr_max,nr_min,er_max):
+    NR_number=0
+    ER_number=0
+    e=events
+    # #NR,nr_max=1,nr_min=0.1
+    # mask=e['max_nr'][cut_fv(e,'nr') & cut_nr_er(e) & cut_nr(e) & cut_nr_t(e)] < nr_max
+    # mask&=e['max_nr'][cut_fv(e,'nr') & cut_nr_er(e) & cut_nr(e) & cut_nr_t(e)] > nr_min
+    # NR_number=len(e['max_nr'][cut_fv(e,'nr') & cut_nr_er(e) & cut_nr(e) & cut_nr_t(e)][mask])
+    
+    #ER,er_max=100
+    mask=e['max_er'][cut_fv(e,'er') & cut_er(e) & cut_er_t(e)] <er_max
+    mask&=e['max_er'][cut_fv(e,'er') & cut_er(e) & cut_er_t(e)] >= ER_MIN
+    ER_number=len(e['max_er'][cut_fv(e,'er') & cut_er(e) & cut_er_t(e)][mask])
+    return NR_number,ER_number
+
+#归一化，需要先跑好归一化python文件
+days=24*3600
+kg= (fv_z1 - fv_z2)/10* fv_r/10 *  fv_r/10 * np.pi *2.862 /1000
+print('LXe mass:', kg, 'kg')
+print('-----------------------')
+    
+def CRN_ray_neutron(folder,genNormalize,bins_nr,bins_er,nr_max,nr_min,er_max):
+    kg= (fv_z1 - fv_z2)/10* fv_r/10 *  fv_r/10 * np.pi *2.862 /1000
+    days=24*3600
+    muon_veto=0.01
+    bins_nr=bins_nr
+    bins_er=bins_er
+    CRN_data_nr=dict()
+    CRN_nr_error=dict()
+    CRN_data_er=dict()
+    NR_rate=dict()
+    NR_error=dict()
+    ER_rate=dict()
+    ER_error=dict()
+
+    files = [os.path.join(folder, f'flux_gamma_OFF_BOTTOM_Z_OFF.h5')]
+    with h5py.File(files[0], 'r', libver='latest', swmr=True) as ipt:
+        events = ipt['events'][:]
+        #primaries = ipt['primaries'][:]
+    e=events
+    # weights = np.full(len(e), genNormalize['gamma_E_BOTTOM_Z']['activity']*days /  (genNormalize['gamma_E_BOTTOM_Z']['direct_factor'])) / np.diff(bins_nr)[np.clip(np.digitize(e['max_nr'], bins_nr) - 1, 0, len(bins_nr) - 2)]/kg
+    # h = np.histogram(e['max_nr'][cut_fv(e,'nr') & cut_nr_er(e) & cut_nr(e) & cut_nr_t(e)],weights=weights[cut_fv(e,'nr') &   cut_nr_er(e) & cut_nr(e)],bins=bins_nr) 
+    # CRN_nr_all = h[0]
+    
+    weights = np.full(len(e), genNormalize['gamma_E_BOTTOM_Z']['activity']*days /  (genNormalize['gamma_E_BOTTOM_Z']['direct_factor'])) /  np.diff(bins_er)[np.clip(np.digitize(e['max_er'], bins_er) - 1, 0, len(bins_er) - 2)]/kg
+    h = np.histogram(e['max_er'][cut_fv(e,'er') & cut_er(e) & cut_er_t(e) & er_energy(e)], weights=weights[cut_fv(e,'er') & cut_er(e) & cut_er_t(e) & er_energy(e)],bins=bins_er)
+    CRN_er_all = h[0]
+    
+    # #to CRN error
+    # bins = bins_nr
+    # bins_diff=np.diff(bins)
+    # CRN_activity= (genNormalize['gamma_E_BOTTOM_Z']['direct_factor'])/(genNormalize['gamma_E_BOTTOM_Z']['activity']*days)
+    
+    # c=1/(CRN_activity*kg)
+    # CRN_nr_error= [ (a * c / b)**(1/2)  for a, b in zip(CRN_nr_all, bins_diff)]
+    
+    #to CRN error
+    bins = bins_er
+    bins_diff=np.diff(bins)
+    CRN_activity= (genNormalize['gamma_E_BOTTOM_Z']['direct_factor'])/(genNormalize['gamma_E_BOTTOM_Z']['activity']*days)
+    
+    c=1/(CRN_activity*kg)
+    CRN_er_error= [ (a * c / b)**(1/2)  for a, b in zip(CRN_er_all, bins_diff)]
+    
+    # CRN_data_nr= CRN_nr_all 
+    CRN_data_er['gamma_E_BOTTOM_Z']= CRN_er_all
+    
+    
+    NR_number_all,ER_number_all=rate_error(e,nr_max,nr_min,er_max)
+    
+    # NR_rate=(NR_number_all)*(genNormalize['gamma_E_BOTTOM_Z']['activity']*days /  (genNormalize['gamma_E_BOTTOM_Z']['direct_factor']))/kg
+    # nr_error1 = (NR_number_all)**(1/2)*(genNormalize['gamma_E_BOTTOM_Z']['activity']*days /  (genNormalize['gamma_E_BOTTOM_Z']['direct_factor']))/kg
+    # NR_error= nr_error1
+    
+    ER_rate['gamma_E_BOTTOM_Z']=(ER_number_all)*(genNormalize['gamma_E_BOTTOM_Z']['activity']*days /  (genNormalize['gamma_E_BOTTOM_Z']['direct_factor']))/kg
+    er_error1 = (ER_number_all)**(1/2)*(genNormalize['gamma_E_BOTTOM_Z']['activity']*days /  (genNormalize['gamma_E_BOTTOM_Z']['direct_factor']))/kg
+    ER_error['gamma_E_BOTTOM_Z']= er_error1
+    
+    return events,CRN_data_nr,CRN_data_er,CRN_nr_error,CRN_er_error,NR_rate,NR_error,ER_rate,ER_error
+
+print('finish the function,then read the data')
+#归一化，需要先跑好归一化python文件
+
+days=24*3600
+#调用了活度，其中有0的需要筛选
+
+import json
+f = open('../normalization.json', 'r')
+content = f.read()
+genNormalize = json.loads(content)
+
+#the position of CRN data
+folder = f'../../../result/gamma_OFF_direct/gammaOFF_Z_direct_30B'
+# folder = f'/home/yyy/Relics_new_water/reslt_预处理/result_v5/20keV'
+bins_nr=np.logspace(-4, 7, 101)
+nr_max=1.36
+nr_min=0.63
+er_max=float(ER_MAX)
+bins_er=np.linspace(ER_MIN,er_max,bins_ER+1)
+# CRN_events,CRN_data_er,CRN_er_error,ER_rate,ER_error=CRN_ray_neutron(folder,genNormalize,bins_nr,bins_er,nr_max,nr_min,er_max)
+_, CRN_data_nr, CRN_data_er, _, CRN_er_error, _, _, ER_rate, ER_error = CRN_ray_neutron(folder, genNormalize, bins_nr, bins_er, nr_max, nr_min, er_max)
+print('finish reading data,then output the message')
+
+#存数据用
+# 将 Numpy 数组转换为列表的递归函数
+def convert_to_list(obj):
+    if isinstance(obj, np.ndarray):
+        return obj.tolist()
+    elif isinstance(obj, dict):
+        return {k: convert_to_list(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [convert_to_list(item) for item in obj]
+    else:
+        return obj
+    
+# 将字典转换为 JSON 字符串，并将其中的 Numpy 数组转换为列表
+# 这里是直接存所有材料的数据，新建一个临时的temp_yyy，存用pandax的活度模拟的结果，如果要用xenon100的，单独存在temp中，记得在这里改写
+json_str = json.dumps(convert_to_list(CRN_data_er))
+with open(f"./{ER_MIN}_{ER_MAX}keV_{bins_ER}bins/temp/GammaOFF_BOTTOM_Z_data.json", "w") as f:
+    f.write(json_str) 
+    
+json_str = json.dumps(convert_to_list(ER_rate))
+with open(f"./{ER_MIN}_{ER_MAX}keV_{bins_ER}bins/temp/GammaOFF_BOTTOM_Z_ER_rate.json", "w") as f:
+    f.write(json_str)
+    
+json_str = json.dumps(convert_to_list(ER_error))
+with open(f"./{ER_MIN}_{ER_MAX}keV_{bins_ER}bins/temp/GammaOFF_BOTTOM_Z_ER_error.json", "w") as f:
+    f.write(json_str)
+
+#进行数据的处理，得到汇总后的结果
+#material data,figure
+Material_Data=sum(CRN_data_er.values())
+error=np.zeros(len(Material_Data))
+
+bins = bins_er
+bins_diff=np.diff(bins)
+kg= (fv_z1 - fv_z2)/10* fv_r/10 *  fv_r/10 * np.pi *2.862 /1000 # 单位kg
+
+for i in range(len(Material_Data)):
+    isotopes=['cosmic']
+    components=['gamma_E_BOTTOM_Z']
+    for j in isotopes:
+        for k in components:
+            c=1/( (genNormalize[k]['direct_factor'])/(genNormalize[k]['activity']*days))
+            error[i]+=(CRN_data_er[k][i] * c / bins_diff[i])
+            #print(error)
+   
+error = np.sqrt(error)
+Material_Data=sum(CRN_data_er.values())
+
+#ER data，存储ER本底数据，xenon存在background的material文件夹下，pandax存在material_pandax文件夹下
+json_str = json.dumps(convert_to_list(Material_Data))
+with open(f"./{ER_MIN}_{ER_MAX}keV_{bins_ER}bins/GammaOFF_BOTTOM_Z_er.json", "w") as f:
+    f.write(json_str)
+
+json_str = json.dumps(convert_to_list(error))
+with open(f"./{ER_MIN}_{ER_MAX}keV_{bins_ER}bins/GammaOFF_BOTTOM_Z_er_error.json", "w") as f:
+    f.write(json_str)
+    
+json_str = json.dumps(convert_to_list(bins_er))
+with open(f"./{ER_MIN}_{ER_MAX}keV_{bins_ER}bins/GammaOFF_BOTTOM_Z_er_bin.json", "w") as f:
+    f.write(json_str)
+
+
+#CRN_er and CRN_er_error
+CRN_ER=sum(ER_rate.values())
+CRN_Error=0
+
+error_CRN_er=0
+for i in ER_error.keys():
+    error_CRN_er+=ER_error[i]**2
+error_material_er=error_CRN_er**(1/2)
+
+CRN_Error=error_material_er
+
+# print('GammaOFF_BOTTOM_Z NR rate:',NR_rate,'/kg/days')
+# print('GammaOFF_BOTTOM_Z NR error:',NR_error)
+print('GammaOFF_BOTTOM_Z ER rate:',CRN_ER/(ER_MAX-ER_MIN),'/kg/days/keV')
+print('GammaOFF_BOTTOM_Z ER error:',CRN_Error/(ER_MAX-ER_MIN))
+ER_rate_mDRU = CRN_ER/(ER_MAX-ER_MIN) * 1000
+ER_error_mDRU = CRN_Error/(ER_MAX-ER_MIN) * 1000
+print('GammaOFF_BOTTOM_Z ER rate(mDRU):',ER_rate_mDRU)
+print('GammaOFF_BOTTOM_Z ER error(mDRU):',ER_error_mDRU)
+print('bins_nr=np.logspace(-4, 7, 101)')
+print(f'bins_er=np.linspace({ER_MIN},{ER_MAX},{bins_ER+1})')
+print('max ER',er_max)
+print('min ER',ER_MIN)
+print(np.pi*(fv_r**2)*(fv_z1-fv_z2)*2.862*(4/3)*(1/2))

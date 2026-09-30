@@ -1,0 +1,6 @@
+nohup: ignoring input
+LXe mass: 10.9045 kg
+-----------------------
+Processing lead Material...
+lead ER spectrum saved to ./ER_0_200keV_1000bins
+lead counts sum: 29.99423598033225 DRU

@@ -1,0 +1,380 @@
+{
+	"PMTwindow": {
+		"density": 2.201,
+		"mass": 0.00206344,
+		"volume": 0.9375011358473421,
+		"num": 56
+	},
+	"PMTcasing": {
+		"density": 8.0,
+		"mass": 0.0135837,
+		"volume": 1.6979625,
+		"num": 0
+	},
+	"PMTbase": {
+		"density": 1.43,
+		"mass": 0.00138387,
+		"volume": 0.9677412587412587,
+		"num": 56
+	},
+	"PMT": {
+		"num": 56
+	},
+	"copper": {
+		"density": 8.92,
+		"mass": 0.122601,
+		"volume": 13.7445067264574
+	},
+	"steel": {
+		"density": 8.0,
+		"total_mass": 75.5736377,
+		"mass": 75.5736377,
+		"volume": 9446.704712500001
+	},
+	"outersteel": {
+		"mass": 49.3119,
+		"volume": 6163.9875
+	},
+	"innersteel": {
+		"mass": 23.6746,
+		"volume": 2959.325
+	},
+	"Flange": {
+		"density": 8.0,
+		"mass": 2.377936,
+		"volume": 297.242
+	},
+	"Teflon": {
+		"density": 2.2,
+		"mass": 0.8729364,
+		"volume": 396.7892727272726
+	},
+	"lXe": {
+		"density": 2.862,
+		"mass": 40.61177,
+		"volume": 14189.9965059399
+	},
+    "lead": {
+		"density": 11.35,
+		"mass": 4369.75,
+		"volume": 385000
+	},
+    "PE": {
+		"density": 0.94,
+		"mass": 10504,
+		"volume": 15981464
+	},
+    "PS": {
+		"density": 1.023,
+		"mass": 361.667,
+		"volume": 353536
+	},
+	"XenonVeto": {
+		"mass": 24.77085,
+		"volume": 8655.083857442347
+	},
+	"XenonDetector": {
+		"mass": 10.9045,
+		"volume": 3810.097833682739
+	},
+    "muon": {
+		"factor": 900000000,
+        "rate": 149.18,
+		"activity": 5370.48
+	},
+	"CRN": {
+		"factor": 500000000,
+		"activity": 357.84
+	},
+    "U238_PE": {
+        "factor": 150000000,
+        "concentration": 0.01778,
+        "activity": 186.76112
+    },
+    "U238_PS": {
+        "factor": 50000000,
+        "concentration": 0.07374,
+        "activity": 26.66932458
+    },
+    "U238_copper": {
+        "factor": 1000000,
+        "concentration": 0.047,
+        "activity": 0.005762247
+    },
+    "U238_steel": {
+        "factor": 10000000,
+        "concentration": 0.00641,
+        "activity": 0.484427017657
+    },
+    "U238_Teflon": {
+        "factor": 1000000,
+        "concentration": 0.00448,
+        "activity": 0.003910755072
+    },
+    "U238_PMTwindow": {
+        "factor": 10000000,
+        "concentration": 0.00022,
+        "activity": 0.1232
+    },
+    "U238_PMTbase": {
+        "factor": 1000000,
+        "concentration": 0.00077,
+        "activity": 0.043120000000000
+    },
+    "U238_Flange": {
+        "factor": 1000000,
+        "concentration": 0.00181,
+        "activity": 0.004304064160000
+    },
+    "Th232_PE": {
+        "factor": 150000000,
+        "concentration": 0.00989,
+        "activity":  103.88456
+    },
+    "Th232_PS": {
+        "factor": 5000000,
+        "concentration": 0.00316,
+        "activity":  1.14286772
+    },
+    "Th232_copper": {
+        "factor": 1000000,
+        "concentration": 0.03269,
+        "activity": 0.00400782669
+    },
+    "Th232_steel": {
+        "factor": 10000000,
+        "concentration": 0.00184,
+        "activity": 0.139055493368
+    },
+    "Th232_Teflon": {
+        "factor": 1000000,
+        "concentration": 0.00206,
+        "activity": 0.001798248984
+    },
+    "Th232_PMTwindow": {
+        "factor": 10000000,
+        "concentration": 0.00014,
+        "activity": 0.00784
+    },
+    "Th232_PMTbase": {
+        "factor": 1000000,
+        "concentration": 7.000000000000001e-05,
+        "activity": 0.00392
+    },
+    "Th232_Flange": {
+        "factor": 1000000,
+        "concentration": 0.00442,
+        "activity": 0.010510477120000
+    },
+    "Co60_PE": {
+        "factor": 150000000,
+        "concentration": 0.00565,
+        "activity": 59.34760
+    },
+    "Co60_copper": {
+        "factor": 1000000,
+        "concentration": 0.014539999999999999,
+        "activity": 0.00178261854
+    },
+    "Co60_steel": {
+        "factor": 10000000,
+        "concentration": 0.0019299999999999999,
+        "activity": 0.145857121
+    },
+    "Co60_Teflon": {
+        "factor": 1000000,
+        "concentration": 0.0017,
+        "activity": 0.00146399188
+    },
+    "Co60_PMTwindow": {
+        "factor": 10000000,
+        "concentration": 0.00246,
+        "activity":  0.13776
+    },
+    "Co60_PMTbase": {
+        "factor": 1000000,
+        "concentration": 7.000000000000001e-05,
+        "activity": 0.00392
+    },
+    "Co60_Flange": {
+        "factor": 1000000,
+        "concentration": 0.00115,
+        "activity": 0.0027346264
+    },
+    "K40_PE": {
+        "factor": 1500000000,
+        "concentration": 0.9508,
+        "activity": 9987.2032
+    },
+    "K40_PS": {
+        "factor": 500000000,
+        "concentration": 0.06699,
+        "activity": 24.2280723
+    },
+    "K40_copper": {
+        "factor": 1000000,
+        "concentration": 0.23736000000000002,
+        "activity": 0.02910057336
+    },
+    "K40_steel": {
+        "factor": 10000000,
+        "concentration": 0.03156,
+        "activity": 2.38510401
+    },
+    "K40_Teflon": {
+        "factor": 1000000,
+        "concentration": 0.04311,
+        "activity":  0.037632288204
+    },
+    "K40_PMTwindow": {
+        "factor": 10000000,
+        "concentration": 0.00898,
+        "activity": 0.50288
+    },
+    "K40_PMTbase": {
+        "factor": 1000000,
+        "concentration": 0.0023599999999999997,
+        "activity": 0.132160000000000
+    },
+    "K40_Flange": {
+        "factor": 1000000,
+        "concentration": 0.03803,
+        "activity": 0.090432906080000
+    },
+    "Cs137_PE": {
+        "factor": 150000000,
+        "concentration": 0.00265,
+        "activity":  27.8356
+    },
+    "Cs137_copper": {
+        "factor": 1000000,
+        "concentration": 0.00874,
+        "activity": 0.00107153274
+    },
+    "Cs137_steel": {
+        "factor": 10000000,
+        "concentration": 0.00157,
+        "activity": 0.118650611189
+    },
+    "Cs137_Teflon": {
+        "factor": 1000000,
+        "concentration": 0.00054,
+        "activity": 0.000471385656
+    },
+    "Cs137_PMTwindow": {
+        "factor": 10000000,
+        "concentration": 0.00007,
+        "activity": 0.00392
+    },
+    "Cs137_PMTbase": {
+        "factor": 1000000,
+        "concentration": 0.00015,
+        "activity": 0.008400000000000
+    },
+    "Cs137_Flange": {
+        "factor": 1000000,
+        "concentration": 0.00109,
+        "activity": 0.00259195024
+    },
+    "Kr85_lXe": {
+        "factor": 1000000,
+        "concentration": 1.592775927782059e-06,
+        "activity": 0.00006468544964
+    },
+    "Rn222_lXe": {
+        "factor": 1000000,
+        "concentration": 4e-05,
+        "activity": 0.0012088676000000002
+    },
+    "U235_copper": {
+        "factor": 1000000,
+        "concentration": 0.0,
+        "activity": 0.0
+    },
+    "U235_steel": {
+        "factor": 10000000,
+        "concentration": 0.0,
+        "activity": 0.0
+    },
+    "U235_Teflon": {
+        "factor": 1000000,
+        "concentration": 0.0,
+        "activity": 0.0
+    },
+    "U235_PMTwindow": {
+        "factor": 10000000,
+        "concentration": 0.00362,
+        "activity": 0.20272
+    },
+    "U235_PMTbase": {
+        "factor": 1000000,
+        "concentration": 0.00057,
+        "activity": 0.03192
+    },
+    "U235_Flange": {
+        "factor": 1000000,
+        "concentration": 0.00471,
+        "activity": 0.01120007856
+    },
+    "Pb210_lead": {
+        "direct_factor":25000000000,
+        "first_flux_factor": 1000000000,
+        "first_flux": 12030,
+        "second_calculate_factor": 60000000,
+        "concentration": 1588.16467,
+        "activity": 8218752.167249999
+    },
+	"neutron_R":{
+        "first_flux_factor": 3000000000,
+        "first_flux": 14915,
+        "second_calculate_factor": 30000000,
+        "concentration": 41.1944334,
+        "activity": 4119.44334
+	},
+	"neutron_E":{
+		"factor": 3000000000,
+		"activity": 173.958333
+	},
+	"gamma_R":{
+		"factor": 3000000000,
+		"activity": 510396.875
+	},
+    "gamma_E_SIDE_Y":{
+        "direct_factor":30000000000,
+        "first_flux_factor": 300000000,
+        "first_flux": 6345,
+        "second_calculate_factor": 9000000,
+        "concentration": 53300,
+        "activity": 5330000
+	},
+    "gamma_E_BOTTOM_Z":{
+        "direct_factor":30000000000,
+        "first_flux_factor": 100000000,
+        "first_flux": 8184,
+        "second_calculate_factor": 9000000,
+        "concentration": 53300,
+        "activity": 5330000
+	},
+    "gamma_E_TOP_Z":{
+        "first_flux_factor": 60000000,
+        "first_flux": 39339,
+        "second_calculate_factor": 90000000,
+        "concentration": 53300,
+        "activity": 53300
+	},
+    "gamma_E_FRONT_X":{
+        "direct_factor":30000000000,
+        "first_flux_factor": 1000000000,
+        "first_flux": 5477,
+        "second_calculate_factor": 9000000,
+        "concentration": 53300,
+        "activity": 5330000
+	},
+    "gamma_E_BACK_X":{
+        "first_flux_factor": 60000000,
+        "first_flux": 353333,
+        "second_calculate_factor": 9000000,
+        "concentration": 53300,
+        "activity": 82615
+	}
+}

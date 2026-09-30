@@ -1,0 +1,29 @@
+# Source 2: Gamma beam at x=200cm, parallel along -x (tiny angular spread)
+# (原 source3 改名; 旧 source2 = 4° 锥、方向错误, 已废弃)
+# Planar circular source, narrow cone (iso needed for Arb energy spectrum)
+# FIX: rot2=(0,-1,0) makes the polar axis (rot2 x rot1) point toward -x (detector)
+/gps/particle gamma
+
+# Source geometry: circular plane at (200, 0, -7.55) cm
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/rot1 0 0 1
+/gps/pos/rot2 0 -1 0
+/gps/pos/centre 200 0 -7.55 cm
+/gps/pos/radius 8 cm
+
+# Angular: very narrow cone ≈ parallel beam (iso type preserves Arb energy spectrum)
+/gps/ang/type iso
+/gps/ang/rot1 0 0 1
+/gps/ang/rot2 0 -1 0
+/gps/ang/mintheta 0 deg
+/gps/ang/maxtheta 0.1 deg
+
+# Energy spectrum from merged reactor gamma histogram file
+/gps/ene/type Arb
+/gps/ene/diffspec 1
+/gps/hist/type arb
+
+/control/getEnv GAMMAHIST
+/gps/hist/file {GAMMAHIST}
+/gps/hist/inter Lin

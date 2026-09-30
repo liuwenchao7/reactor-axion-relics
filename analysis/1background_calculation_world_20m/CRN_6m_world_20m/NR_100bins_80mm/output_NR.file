@@ -1,0 +1,14 @@
+nohup: ignoring input
+Run
+<class 'int'>
+<class 'int'>
+<class 'int'>
+<class 'int'>
+<class 'int'>
+LXe mass: 8.98116798781847 kg
+-----------------------
+finish the function,then read the data
+finish reading data,then output the message
+CRN NR rate: {'CRN': 7.222296135199632} /kg/days
+CRN NR error: {'CRN': 0.22299110915285336}
+bins_nr=np.logspace(-4, 7, 101)

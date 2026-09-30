@@ -1,0 +1,6 @@
+nohup: ignoring input
+LXe mass: 10.9045 kg
+-----------------------
+Processing Gamma Side...
+Gamma ER spectrum saved to ./ER_0_200keV_1000bins
+Gamma counts sum: 2.2804941079370886 DRU

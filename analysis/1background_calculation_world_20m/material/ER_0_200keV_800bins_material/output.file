@@ -1,0 +1,13 @@
+nohup: ignoring input
+Run
+LXe mass: 8.981167987818466 kg
+-----------------------
+finish the function, then read the data
+==================================================
+Material ER rate: 4.768447 /kg/days/keV
+Material ER error: 0.002355
+Material ER rate(mDRU): 4768.446632
+Material ER error(mDRU): 2.354699
+bins_er=np.linspace(0.0,200.0,801)
+FV mass: 8.98 kg
+==================================================

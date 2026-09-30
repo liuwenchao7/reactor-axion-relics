@@ -1,0 +1,21 @@
+nohup: ignoring input
+Run
+<class 'int'>
+<class 'int'>
+<class 'int'>
+<class 'int'>
+<class 'int'>
+<class 'int'>
+LXe mass: 8.98116798781847 kg
+-----------------------
+finish the function,then read the data
+finish reading data,then output the message
+GammaOFF_BOTTOM_Z ER rate: 27.432280560186285 /kg/days/keV
+GammaOFF_BOTTOM_Z ER error: 1.082665754098549
+GammaOFF_BOTTOM_Z ER rate(mDRU): 27432.280560186286
+GammaOFF_BOTTOM_Z ER error(mDRU): 1082.6657540985489
+bins_nr=np.logspace(-4, 7, 101)
+bins_er=np.linspace(0,20,21)
+max ER 20.0
+min ER 0
+5987445.325212312

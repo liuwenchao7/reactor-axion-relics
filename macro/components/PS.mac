@@ -1,0 +1,12 @@
+/control/getEnv ISOTOPEFILE
+#/control/echo {ISOTOPEFILE}
+/control/execute {ISOTOPEFILE}
+
+/cgs/ang/type iso
+
+/cgs/conf/material PS
+
+/cgs/shape Cylinder
+/cgs/radius 57 cm
+/cgs/halfz 70 cm
+/cgs/centre -15 0 -15 cm

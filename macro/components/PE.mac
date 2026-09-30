@@ -1,0 +1,14 @@
+/control/getEnv ISOTOPEFILE
+#/control/echo {ISOTOPEFILE}
+/control/execute {ISOTOPEFILE}
+
+/cgs/ang/type iso
+
+/cgs/conf/material G4_POLYETHYLENE
+
+# Using outer confined volume
+/cgs/shape Box
+/cgs/halfx 120 cm
+/cgs/halfy 120 cm
+/cgs/halfz 140 cm
+/cgs/centre 0 0 0 cm

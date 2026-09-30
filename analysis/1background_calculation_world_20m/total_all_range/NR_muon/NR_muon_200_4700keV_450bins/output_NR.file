@@ -1,0 +1,6 @@
+nohup: ignoring input
+NR energy range: 200 - 4700 keV, bins: 450
+LXe mass: 10.9045 kg
+-----------------------
+Muon NR spectrum saved to ./NR_muon_200_4700keV_450bins
+Sum of CRN_counts: 0.009329943887386333 DRU

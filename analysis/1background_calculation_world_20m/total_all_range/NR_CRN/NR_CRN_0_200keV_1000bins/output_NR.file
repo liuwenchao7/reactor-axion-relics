@@ -1,0 +1,6 @@
+nohup: ignoring input
+NR energy range: 0 - 200 keV, bins: 1000
+LXe mass: 10.9045 kg
+-----------------------
+CRN NR spectrum saved to ./NR_CRN_0_200keV_1000bins
+Sum of CRN_counts: 5.003854466835299 DRU

@@ -1,0 +1,12 @@
+/control/getEnv ISOTOPEFILE
+#/control/echo {ISOTOPEFILE}
+/control/execute {ISOTOPEFILE}
+
+/cgs/ang/type iso
+
+/cgs/conf/material Teflon
+
+/cgs/shape Cylinder
+/cgs/radius 70 cm
+/cgs/halfz 100 cm
+/cgs/centre 0 0 0 cm

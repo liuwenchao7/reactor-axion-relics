@@ -1,0 +1,16 @@
+#/geometry/test/resolution 500000
+#/cgs/particle opticalphoton
+/cgs/particle alpha
+#/cgs/particle e-
+/cgs/energy 1 keV
+
+/cgs/ang/type iso
+
+/cgs/conf/material LXe
+
+/cgs/shape Cylinder
+/cgs/radius 25 cm
+/cgs/halfz 40 cm
+/cgs/centre 0 0 0 cm
+
+/tracking/verbose 0
